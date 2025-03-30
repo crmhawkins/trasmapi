@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=none">
+    <!-- Para Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Para iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./icono-192x192.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="./icono-192x192.png" sizes="16x16" type="image/png">
+    <script src="bundle.js  "></script>
+    <link rel="stylesheet" href="/assets/css/app-ios.css">
+    <title>Be Blue | Game Green</title>
+    <!-- <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="stylesheet" href="./assets/css/game1.css">
+    <link rel="stylesheet" href="./assets/css/game2.css">
+    <link rel="stylesheet" href="./assets/css/game3.css">
+    <link rel="stylesheet" href="./assets/css/global.css">
+    <link rel="stylesheet" href="./assets/css/posidoniasGame.css">
+    <link rel="stylesheet" href="./assets/css/barcoGame.css">
+    <link rel="stylesheet" href="./assets/css/limpiezaGame.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        function cargarHojaDeEstilos() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Detectar Safari en iOS
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                console.log('IOS')
+                link.href = './assets/css/app-ios.css'; // Ruta a tu hoja de estilos para iOS
+            }
+            // Detectar Android
+            else if (/android/i.test(userAgent)) {
+                console.log('ANDROID')
+                link.href = './assets/css/app-android.css'; // Ruta a tu hoja de estilos para Android
+            }
+            // Opcional: Estilos por defecto para otros navegadores/dispositivos
+            else {
+                console.log('OTROS')
+                link.href = './assets/css/app-otros.css';
+            }
+
+            document.head.appendChild(link);
+        }
+    </script>
+<script defer src="/app.js"></script></head>
+<body id="bodyArea"  onload="cargarHojaDeEstilos();">
+    <button id="addToHomeBtn" class="area_entrada"><div class="imgArea"></div></button>
+    <!-- Audios del Juego -->
+    <audio id="crashSound" src="./assets/audio/crash.wav" preload="auto"></audio>
+    <audio id="savedSound" src="./assets/audio/5048.mp3" preload="auto"></audio>
+    <audio id="backgroundMusic" loop>
+        <source src="./assets/audio/fondo.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento audio.
+    </audio>
+
+    <!-- Rotacion del Dispositivo -->
+    <div id="rotateDevice" style="display: none;">
+        <img class="imgLogo" src="./assets/images/logoBeWhite.svg" alt="">
+        <div class="texto">
+            <span>Por favor, rota tu dispositivo a modo paisaje.</span>
+            <img class="icon_rotate" src="./assets/images/icon_rotate.png" alt="">
+        </div>
+    </div>
+
+    <!-- Pantalla de Inicio -->
+    <div id="startScreen" style="position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,1); display: flex; justify-content: center; align-items: flex-start; z-index: 9000;">
+        <!-- Game 1 Tortugas Bobas -->
+        <div class="section game1" id="game1">
+            <div class="logo_header">
+                <img src="./assets/images/logo_trasmapi.svg" alt="">
+            </div>
+            <div class="tortuga_header">
+                <img src="./assets/images/tortuga.svg" alt="">
+            </div>
+            <!-- <p class="sub_title">THINK GAMING</p> -->
+            <h3 class="titulo">CONSERVACIÓN <br>"TORTUGAS FELICES"</h3>
+            <img src="./assets/images/juega.svg" alt="" style="width: 80%; margin-top: 8px; margin-bottom: 8px;">
+            <!-- <p>Te invitamos a participar en un juego especial que no sólo te ofrecerá diversión, sino también la oportunidad de marcar la diferencia. Al participar, estarás contribuyendo directamente a nuestro proyecto de conservación y cuidado de las tortugas bobas, una especie maravillosa y vital para nuestro ecosistema. No es sólo un juego, es una misión. 
+                ¡Únete a nosotros, diviértete y sé parte del cambio positivo en Ibiza!</p> -->
+            <button id="masInfoTortugas" class="btn-secundario">DETALLES DEL JUEGO</button>
+            <button id="startButton"  class="btn">SELECCIONA JUEGO</button>
+            <img class="barco-footer" src="./assets/images/barco_tortugas.svg" alt="">
+        </div>
+        <div class="infoGame1" id="infoGame1" style="display: none;">
+            <div class="logo_header_info">
+                <img src="./assets/images/logo_trasmapi.svg" alt="">
+            </div>
+            <!-- <div class="tortuga_header">
+                <img src="./assets/images/tortuga.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>Con <strong>Trasmapi</strong> y su proyecto de <strong>Responsabilidad Social BE BLUE,</strong> podrás aportar tu granito en la ayuda para la conservación de esta especie declarada vulnerable a la extinción.  
+            Tu preferencia de juego, y tu puntuación, nos indicarán dónde prefieres que se invierta más este mes: <strong>en conservación, investigación o educación.</strong></p>
+            <img class="barco-footer" src="./assets/images/barco_tortugas.svg" alt="">
+            <div class="botones">
+                <button id="volverGame1"  class="btn-secundario">ATRAS</button>
+                <button id="startGame1"  class="btn">SELECCIONA JUEGO</button>
+            </div>
+
+            
+        </div>
+        <div class="jugarGame1" id="jugarGame1" style="display: none;">
+            <div id="volverTortugas" class="volver"><img src="./assets/images/volver_icon.svg" alt=""></div>
+            <div class="logo_header">
+                <img src="./assets/images/logo_trasmapi.svg" alt="" width="100%">
+            </div>
+            <!-- <div class="tortuga_header">
+                <img src="./assets/images/tortuga.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>La tortuga boba nace en la costa de Florida y, ayudada por las corrientes marinas, viaja hasta las aguas de Formentera donde crece hasta alcanzar su edad de reproducción, momento en que emprende el viaje de regreso.
+                Ayúdanos a que las tortugas puedan alcanzar su destino!</p>
+            <img class="barco-footer" src="./assets/images/barco_tortugas.svg" alt="">
+            <div class="botones">
+                <button id="startGameTortugas"  class="btn">JUGAR</button>
+            </div>
+
+            
+        </div>
+
+        <!-- Game 2 Posidonias -->
+        <div class="section game2" id="game2">
+            <div class="logo_header">
+                <img src="./assets/images/logo_formentera.svg" alt="">
+            </div>
+            <div class="tortuga_header">
+                <img src="./assets/images/posidonia.svg" alt="">
+            </div>
+            <!-- <p class="sub_title">THINK GAMING</p> -->
+            <h3 class="titulo">INVESTIGACIÓN <br>"POSIDONIAS BAILANDO"</h3>
+            <img src="./assets/images/juega.svg" alt="" style="width: 80%; margin-top: 8px; margin-bottom: 8px;">
+            <!-- <p>Al sumergirte en esta aventura, estarás apoyando nuestro esfuerzo en la conservación y cuidado de las posidonias, esas plantas submarinas esenciales que oxigenan nuestros mares y son el corazón del ecosistema marino de Formentera. Al jugar, te conviertes en un defensor de nuestras costas y de esta planta vital. 
+                ¡Participa, disfruta y ayúdanos a proteger el tesoro subacuático de Formentera!</p> -->
+                <button id="masInfoPosidonias"  class="btn-secundario">DETALLES DEL JUEGO</button>
+                <button id="startPosidonias" class="btn">SELECCIONA JUEGO</button>
+                <img class="barco-footer" src="./assets/images/barco_posidonia.svg" alt="">
+        </div>
+        <div class="infoGame2" id="infoGame2" style="display: none;">
+            <div class="logo_header_info">
+                <img src="./assets/images/logo_formentera.svg" alt="">
+            </div>
+            <!-- <div class="tortuga_header">
+                <img src="./assets/images/posidonia.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>Con <strong>Formentera Lines</strong> y su proyecto de <strong>Responsabilidad Social BE BLUE,</strong> podrás aportar tu granito en la ayuda para la conservación de esta especie declarada vulnerable a la extinción.  
+            Tu preferencia de juego, y tu puntuación, nos indicarán dónde prefieres que se invierta más este mes: <strong>en conservación, investigación o educación.</strong></p>
+            <img class="barco-footer" src="./assets/images/barco_posidonia.svg" alt="">
+            <div class="botones">
+                <button id="volverGame2"  class="btn-secundario">ATRAS</button>
+                <button id="startGame2"  class="btn">SELECCIONA JUEGO</button>
+            </div>
+
+            
+        </div>
+        <div class="jugarGame2" id="jugarGame2" style="display: none;">
+            <div id="volverPosidonias" class="volver"><img src="./assets/images/volver_icon.svg" alt=""></div>
+            <div class="logo_header_info">
+                <img src="./assets/images/logo_formentera.svg" alt="">
+            </div>
+            <!-- <div class="logo_header_game">
+                <img src="./assets/images/posidonia.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>La Posidonia oceanica es una planta marina endémica del Mediterráneo, hoy en peligro y amenazada en su propio hábitat. Sortea las praderas de Posidonia y ayúdanos a preservarlas.</p>
+            <img class="barco-footer" src="./assets/images/barco_posidonia.svg" alt="">
+            <div class="botones">
+                <button id="startGamePosidonias"  class="btn">JUGAR</button>
+            </div>
+
+            
+        </div>
+
+        <!-- Game 3 Limpieza del Mar -->
+        <div class="section game3" id="game3">
+            <div class="logo_header">
+                <img src="./assets/images/logo_menorca.svg" alt="">
+            </div>
+            <div class="tortuga_header">
+                <img src="./assets/images/red.svg" alt="">
+            </div>
+            <!-- <p class="sub_title">THINK GAMING</p> -->
+            <h3 class="titulo">EDUCACIÓN <br>"TRISTE BASURA MARINA"</h3>
+            <img src="./assets/images/juega.svg" alt="" style="width: 80%; margin-top: 8px; margin-bottom: 8px;">
+            <!-- <p>Al participar, no solo encontrarás entretenimiento, sino que serás parte activa en nuestra cruzada para la limpieza del fondo marino de Menorca. Con cada partida, nos ayudas a combatir uno de los problemas ambientales más grandes de nuestra época: la contaminación por plásticos. Estos residuos amenazan nuestra fauna, flora y, en última instancia, a todos nosotros. No es sólo un juego, es una llamada a la acción. 
+                ¡Juega, involúcrate y ayúdanos a liberar las profundidades marinas de plásticos!</p> -->
+                <button id="masInfoLimpieza"  class="btn-secundario">DETALLES DEL JUEGO</button>
+                <button id="startLimpieza" class="btn">SELECCIONA JUEGO</button>
+                <img class="barco-footer " src="./assets/images/barco_redes.svg" alt="">
+        </div>
+        <div class="infoGame3" id="infoGame3" style="display: none;">
+            <div class="logo_header_info">
+                <img src="./assets/images/logo_menorca.svg" alt="">
+            </div>
+            <!-- <div class="tortuga_header">
+                <img src="./assets/images/red.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>Con <strong>Menorca Lines</strong> y su proyecto de <strong>Responsabilidad Social BE BLUE,</strong> podrás aportar tu granito en la ayuda para la conservación de esta especie declarada vulnerable a la extinción.  
+            Tu preferencia de juego, y tu puntuación, nos indicarán dónde prefieres que se invierta más este mes: <strong>en conservación, investigación o educación.</strong></p>
+            <img class="barco-footer" src="./assets/images/barco_redes.svg" alt="">
+            <div class="botones">
+                <button id="volverGame3"  class="btn-secundario">ATRAS</button>
+                <button id="startGame3"  class="btn">SELECCIONA JUEGO</button>
+            </div>
+
+            
+        </div>
+        <div class="jugarGame3" id="jugarGame3" style="display: none;">
+            <div id="volverLimpieza" class="volver"><img src="./assets/images/volver_icon.svg" alt=""></div>
+            <div class="logo_header">
+                <img src="./assets/images/logo_menorca.svg" alt="" style="width: 100%;">
+            </div>
+            <!-- <div class="tortuga_header">
+                <img src="./assets/images/red.svg" alt="">
+            </div> -->
+            <img src="./assets/images/haz_que_tu_viaje.svg" alt="" style="width: 200px; margin-top: 8px; margin-bottom: 8px;">
+            <p>Los plásticos no sólo contaminan las costas, sino que también afecta a toda la fauna marina. Los animales se enredan en ellos y confunden los fragmentos más pequeños con comida, lo que puede provocar su intoxicación y acabar con su vida.
+                Ayúdanos a recoger el máximo de residuos que flotan en nuestras aguas!</p>
+            <img class="barco-footer" src="./assets/images/barco_redes.svg" alt="">
+            <div class="botones">
+                <button id="startGameLimpieza"  class="btn">JUGAR</button>
+            </div>
+
+            
+        </div>
+        <!-- <button id="startButton">Iniciar Juego</button> -->
+        <div class="banner">
+            <img src="./assets/images/banner.svg" alt="">
+        </div>
+    </div>
+
+    <!-- Modal de Pausa de Tortugas -->
+    <div id="pauseModalTortuga" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999999;">
+        <div style="position: relative; width: 300px; margin: 15% auto; padding: 20px; background-color: white; text-align: center; border-radius: 5px;z-index: 99999;">
+            <h2>Pausado</h2>
+            <button class="btn-resumen" id="resumeButtonTortuga">Reanudar</button>
+        </div>
+    </div>
+     <!-- Modal de Pausa de Tortugas -->
+     <div id="pauseModalLimpieza" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999999;">
+        <div style="position: relative; width: 300px; margin: 15% auto; padding: 20px; background-color: white; text-align: center; border-radius: 5px;z-index: 99999;">
+            <h2>Pausado</h2>
+            <button class="btn-resumen" id="resumeButtonLimpieza">Reanudar</button>
+        </div>
+    </div>
+     <!-- Modal de Pausa de Tortugas -->
+     <div id="pauseModalPosidonia" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999999;">
+        <div style="position: relative; width: 300px; margin: 15% auto; padding: 20px; background-color: white; text-align: center; border-radius: 5px; z-index: 99999;">
+            <h2>Pausado</h2>
+            <button class="btn-resumen" id="resumeButtonPosidonia">Reanudar</button>
+        </div>
+    </div>
+    
+    <!-- Juego de Tortugas Bobas -->
+    <div id="gameArea">
+        <div class="volverGameTortugas">
+            <img id="botonPausarTortuga" src="./assets/images/icon_pause.svg" alt="">
+            <!-- <img id="botonVolverTortugas" src="./assets/images/volver_icon.svg" alt=""> -->
+            <img id="botonSalirTortugas" src="./assets/images/salir_icon3.svg" alt="">
+        </div>
+        <div class="logo">
+            <img src="./assets/images/logo_trasmapi_single.svg" alt="">
+        </div>
+        <div class="logoFooter">
+            <img src="./assets/images/logoBeWhite.svg" alt="">
+        </div>
+        <div class="botonesAcciones">
+            <button id="botonUp" class="botonTouch"><i class="fa-solid fa-arrow-up"></i></button>
+            <button id="botonDown" class="botonTouch"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+        <div id="sky">
+            <div class="cloud cloud1" id="cloud1"></div>
+            <div class="cloud cloud2" id="cloud2"></div>
+            <div class="cloud cloud3" id="cloud3"></div>
+        </div> <!-- Área del cielo -->
+        <div id="sea" class="paused-animation">
+            <div id="boat" class="object"></div> <!-- El barco está dentro del área del mar -->
+        </div>
+        <div id="score">
+            <div class="puntuacion">
+                <img src="https://i.ibb.co/FgvRCk6/trotugas-09.png" alt="" class="imgScore">
+                <div class="puntosTitle">
+                    <p class="title">
+                        SCORE:
+                    </p>
+                    <p class="descripcion"><span id="points">0</span><span class=""> </span> de tortugas felices</p>
+                    <hr/>
+                </div>
+            </div>
+            
+            <div class="record">
+                <img src="./assets/images/tortuga.svg" alt="" class="imgScore">
+                <div class="recordTitle">
+                    <p class="descripcion"><span class="bold">RECORD: </span><span class="puntosRecord" id="puntosTortugas">0 </span> de tortugas felices</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pantalla Fin del juego -->
+        <div id="scoreScreen" style="display: none">
+            <div class="card" id="scoreDatos">
+                <img class="enhorabuena" src="./assets/images/mensaje_enhorabuena.png" alt="">
+                <!-- <h2>¡Fin del juego!</h2> -->
+                <div class="puntuacionFinalDiv">
+                    <div class="puntuacionFinal">
+                        <span class="titulo">
+                            Tu puntuación:
+                        </span>
+                        <span id="finalScore">300</span>
+                    </div>
+                    <div class="puntuacionFinal" style="margin-top: 12px;">
+                        <span class="titulo">
+                            Ingresa tus iniciales: 
+                        </span>
+                        <span id="finalScore">
+                            <input type="text" id="playerNameTortuga" maxlength="3">
+                        </span><br/>
+                    </div>
+                    <div class="seguir">
+                        <button class="btn-segundo" id="saveScore">Continuar</button>
+                        <button id="reiniciarTortugasPrimero" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                    </div>
+                </div>
+
+                            
+            </div>
+            <div id="scoreLista" class="card" style="display: none;">
+                <div class="listaPuntuaciones">
+                    <div class="mejoresPuntuaciones">
+                        <div class="left">
+                            <h3>
+                                TOP SCORE:
+                            </h3>
+                            <img src="./assets/images/logo_trofeo.png" alt="">
+                            <button id="reiniciarTortugas" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                            <button id="salirPantalla" class="btn-salir" style="margin-left: 0; margin-top: 1rem;    width: 100%;">Salir</button>
+                        </div>
+                        <div class="right">
+                            <ul id="topScores">
+                                <!-- Aquí se listarán las puntuaciones -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="transmapi">
+                        
+                        <table id="scoreListTortugas">
+                            <thead>
+                                <tr>
+                                    <th class="tableCabecera">Jugador</th>
+                                    <th class="tableCabeceraPuntos">Puntuación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyTortugas">
+                                <!-- Los datos se llenarán aquí desde el script JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Juego de Posidonias-->
+    <div id="gameAreaPosidonias">
+        <div class="volverGameTortugas">
+            <img id="botonPausarPosidonias" src="./assets/images/icon_pause.svg" alt="">
+            <!-- <img id="botonVolverPosidonias" src="./assets/images/volver_icon.svg" alt=""> -->
+            <img id="botonSalirPosidonias" src="./assets/images/salir_icon3.svg" alt="">
+        </div>
+        <div class="logoPosidonia">
+            <img src="./assets/images/logo_formentera_single.svg" alt="">
+        </div>
+        <div class="logoFooterPosidonias">
+            <img src="./assets/images/logoBeWhite.svg" alt="">
+        </div>
+        <div class="botonesAcciones">
+            <button id="botonUpPosidonia" class="botonTouch"><i class="fa-solid fa-arrow-up"></i></button>
+            <button id="botonDownPosidonia" class="botonTouch"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+        <div id="skyPosidonias">
+            <div class="cloudPosidonia cloudPosidonia1" id="cloudPosidonia1"></div>
+            <div class="cloudPosidonia cloudPosidonia2" id="cloudPosidonia2"></div>
+            <div class="cloudPosidonia cloudPosidonia3" id="cloudPosidonia3"></div>
+        </div> <!-- Área del cielo -->
+        <div id="seaPosidonia" class="paused-animationPosidonias">
+            <div id="boatPosidonia" class="objectPosidonia"></div> <!-- El barco está dentro del área del mar -->
+        </div>
+        <div id="scorePosidonias">
+            <div class="puntuacionPosidonias">
+                <img src="https://i.ibb.co/FgvRCk6/trotugas-09.png" alt="" class="imgScore">
+                <div class="puntosTitlePosidonias">
+                    <p class="title">
+                        SCORE:
+                    </p>
+                    <p class="descripcion"><span id="pointsPosidonias">0</span><span class=""> </span> de posidonias bailadoras</p>
+                    <hr/>
+                </div>
+            </div>
+            
+            <div class="recordPosidonias">
+                <img src="./assets/images/posidonia.svg" alt="" class="imgScore">
+                <div class="recordTitle">
+                    <p class="descripcion"><span class="bold">RECORD: </span><span class="puntosRecord" id="puntosPosidonias"></span> de posidonias bailadoras</p>
+                </div>
+            </div>
+        </div>
+        <div id="rotateDevice" style="display: none;">
+            <img class="imgLogo" src="./assets/images/logoBeWhite.svg" alt="">
+            <div class="texto">
+                <span>Por favor, rota tu dispositivo a modo paisaje.</span>
+                <img class="icon_rotate" src="./assets/images/icon_rotate.png" alt="">
+            </div>
+        </div>
+        <div id="scoreScreenPosidonias" style="display: none">
+            <div class="card" id="scoreDatosPosidonias">
+                <img class="enhorabuena" src="./assets/images/mensaje_enhorabuena.png" alt="">
+                <!-- <h2>¡Fin del juego!</h2> -->
+                <p class="scoreText">Gracias por participar. Tu puntuación en este juego nos indicará donde donaremos nuestra aportación trimestral; investigación, conservación o educación.</p>
+                <div class="puntuacionFinalDiv">
+                    <div class="puntuacionFinal">
+                        <span class="titulo">
+                            Tu puntuación:
+                        </span>
+                        <span id="finalScorePosidonias">300</span>
+                    </div>
+                    <div class="puntuacionFinal" style="margin-top: 12px;">
+                        <span class="titulo">
+                            Ingresa tus iniciales: 
+                        </span>
+                        <span id="finalScore">
+                            <input type="text" id="playerNamePosidonias" maxlength="3">
+                        </span><br/>
+                    </div>
+                    <div class="seguir">
+                        <button class="btn-segundo" id="saveScorePosidonias">Continuar</button>
+                        <button id="reiniciarPosidoniasPrimero" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                    </div>
+                </div>
+    
+                            
+            </div>
+            <div id="scoreListaPosidonias" class="card" style="display: none;">
+                <div class="listaPuntuaciones">
+                    <div class="mejoresPuntuaciones">
+                        <div class="left">
+                            <h3>
+                                TOP SCORE:
+                            </h3>
+                            <img src="./assets/images/logo_trofeo.png" alt="">
+                            <button id="reiniciarPosidonias" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                            <button id="salirPantallaPosidonias" class="btn-salir" style="margin-left: 0; margin-top: 1rem;    width: 100%;">Salir</button>
+                        </div>
+                        <div class="right">
+                            <ul id="topScores">
+                                <!-- Aquí se listarán las puntuaciones -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="transmapi">
+
+                        <table id="scoreListposidonias">
+                            <thead>
+                                <tr>
+                                    <th class="tableCabecera">Jugador</th>
+                                    <th class="tableCabeceraPuntos">Puntuación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyPosidonias">
+                                <!-- Los datos se llenarán aquí desde el script JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Juego de Limpia el Mar -->
+    <div id="gameAreaLimpieza">
+        <div class="volverGameTortugas">
+            <img id="botonPausarLimpieza" src="./assets/images/icon_pause.svg" alt="">
+            <!-- <img id="botonVolverLimpieza" src="./assets/images/volver_icon.svg" alt=""> -->
+            <img id="botonSalirLimpieza" src="./assets/images/salir_icon3.svg" alt="">
+        </div>
+        <div class="logoLimpieza">
+            <img src="assets/images/logo_menorca_single.svg" alt="">
+        </div>
+        <div class="logoFooterLimpieza">
+            <img src="./assets/images/logoBeWhite.svg" alt="">
+        </div>
+        <div class="botonesAcciones">
+            <button id="botonUpLimpieza" class="botonTouch"><i class="fa-solid fa-arrow-up"></i></button>
+            <button id="botonDownLimpieza" class="botonTouch"><i class="fa-solid fa-arrow-down"></i></button>
+        </div>
+        <div id="skyLimpieza">
+            <div class="cloudLimpieza cloudLimpieza1" id="cloudLimpieza1"></div>
+            <div class="cloudLimpieza cloudLimpieza2" id="cloudLimpieza2"></div>
+            <div class="cloudLimpieza cloudLimpieza3" id="cloudLimpieza3"></div>
+        </div> <!-- Área del cielo -->
+        <div id="seaLimpieza" class="paused-animationLimpieza">
+            <div id="boatLimpieza" class="objectLimpieza barcoEstadoNormal"></div> <!-- El barco está dentro del área del mar -->
+        </div>
+        <div id="scoreLimpieza">
+            <div class="puntuacionLimpieza">
+                <img src="https://i.ibb.co/FgvRCk6/trotugas-09.png" alt="" class="imgScore">
+                <div class="puntosTitleLimpieza">
+                    <p class="title">
+                        SCORE:
+                    </p>
+                    <p class="descripcion"><span id="pointsLimpieza">0</span><span class=""> </span> de triste basura marina</p>
+                    <hr/>
+                </div>
+            </div>
+            
+            <div class="recordLimpieza">
+                <img src="./assets/images/logo_basura.svg" alt="" class="imgScore">
+                <div class="recordTitle">
+                    <p class="descripcion"><span class="bold">RECORD: </span><span class="puntosRecord" id="puntosLimpieza"></span> de triste basura marina</p>
+                </div>
+            </div>
+            <div class="vidas">
+                <div id="vidasFinal" class="vidasFinal"><img src="./assets/images/corazon.png" alt="">Vidas:  <spanp class="vidasRestantes" id="vidas">10</span></div>
+            </div>
+            
+        </div>
+        <div id="scoreScreenLimpieza" style="display: none">
+            <div class="card" id="scoreDatosLimpieza">
+                <img class="enhorabuena" src="./assets/images/mensaje_enhorabuena.png" alt="">
+                <!-- <h2>¡Fin del juego!</h2> -->
+                <p class="scoreText">Gracias por participar. Tu puntuación en este juego nos indicará donde donaremos nuestra aportación trimestral; investigación, conservación o educación.</p>
+                <div class="puntuacionFinalDiv">
+                    <div class="puntuacionFinal">
+                        <span class="titulo">
+                            Tu puntuación:
+                        </span>
+                        <span id="finalScoreLimpieza">300</span>
+                    </div>
+                    <div class="puntuacionFinal" style="margin-top: 12px;">
+                        <span class="titulo">
+                            Ingresa tus iniciales: 
+                        </span>
+                        <span id="finalScore">
+                            <input type="text" id="playerNameLimpieza" maxlength="3">
+                        </span><br/>
+                    </div>
+                    <div class="seguir">
+                        <button class="btn-segundo" id="saveScoreLimpieza">Continuar</button>
+                        <button id="reiniciarLimpiezaPrimero" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                    </div>
+                </div>
+    
+                            
+            </div>
+            <div id="scoreListaLimpieza" class="card" style="display: none;">
+                <div class="listaPuntuaciones">
+                    <div class="mejoresPuntuaciones">
+                        <div class="left">
+                            <h3>
+                                TOP SCORE:
+                            </h3>
+                            <img src="./assets/images/logo_trofeo.png" alt="">
+                            <button id="reiniciarLimpieza" class="btn" style="margin-left: 0; margin-top: 1rem; width: 100%;" >Volver a Jugar</button>
+                            <button id="salirPantallaLimpieza" class="btn-salir" style="margin-left: 0; margin-top: 1rem;    width: 100%;">Salir</button>
+                        </div>
+                        <div class="right">
+                            <ul id="topScores">
+                                <!-- Aquí se listarán las puntuaciones -->
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <div class="transmapi">
+
+                        <table id="scoreListLimpieza">
+                            <thead>
+                                <tr>
+                                    <th class="tableCabecera">Jugador</th>
+                                    <th class="tableCabeceraPuntos">Puntuación</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyLimpieza">
+                                <!-- Los datos se llenarán aquí desde el script JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="rotateDevice" style="display: none;">
+            <img class="imgLogo" src="./assets/images/logoBeWhite.svg" alt="">
+            <div class="texto">
+                <span>Por favor, rota tu dispositivo a modo paisaje.</span>
+                <img class="icon_rotate" src="./assets/images/icon_rotate.png" alt="">
+            </div>
+        </div>
+        
+    </div>
+    <script src="app.js" type="module"></script>
+    
+</body>
+</html>

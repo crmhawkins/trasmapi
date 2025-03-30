@@ -1,0 +1,258 @@
+.game2 {
+    background-color: #5C96BA;
+    background-image: url('../images/fondo_posidonias.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 90px;
+    width: 33.33%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+.game2 .tortuga_header {
+    width: 19px;
+    margin: 0 auto;
+    margin-top: 0.1rem;
+}
+.game2 .logo_header {
+    margin: 0 auto;
+   /* margin-top: 1rem;*/
+    width: 120px;
+    text-align: center;
+
+}
+.game2 .logo_header img {
+    width: 120px;
+}
+.game2 .logo_header_info {
+    margin: 0 auto;
+    /*margin-top: 1rem;*/
+    width: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.game2 .logo_header_info img {
+    width: 100%
+}
+.jugarGame2 .logo_header_game {
+    margin: 0 auto;
+   /* margin-top: 1rem;*/
+    width: 50px;
+    text-align: center;
+
+}
+.game2 .sub_title {
+    margin-bottom: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+        font-size: 10px;
+    font-weight: 100;
+}
+.game2 h3{
+    margin-bottom: 0;
+    margin-top: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+        font-size: 10px;
+    font-weight: bold;
+}
+.game2 h2{
+    margin-bottom: 6px;
+    color: white;
+    text-align: center;
+    font-family: 'Impact';
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 6px;
+}
+.game2 p {
+    margin-bottom: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+    font-size: 6px;
+    margin-top: 0;
+}
+.game2 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 8px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.game2 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 8px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.game2 .barco-footer {
+    width: 80%;
+    margin-top: 1rem;
+}
+.game2 .titulo{
+    margin-top: 0.5rem;
+}
+
+
+/* Informacion del Juego */ 
+.infoGame2 {
+    background-color: #3B7ABE;
+    background-image: url('../images/fondo_posidonias.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.infoGame2 .barco-footer {
+    width: 40%;
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 24%;
+    left: 3%;
+}
+.infoGame2 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.infoGame2 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 1REM;
+}
+.infoGame2 .botones {
+    position: relative;
+
+    z-index: 9999;
+}
+.infoGame2 p {
+
+    color: white;
+    font-family: 'SF-Compact';
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+
+}
+
+.infoGame2 .tortuga_header {
+    width: 60px;
+}
+
+/* Comenzar Juego */
+.jugarGame2 {
+    background-color: #3B7ABE;
+    background-image: url('../images/fondo_posidonias.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.jugarGame2 .barco-footer {
+    width: 40%;
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 24%;
+    left: 3%;
+}
+.jugarGame2 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.jugarGame2 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 1REM;
+}
+.jugarGame2 .botones {
+    position: relative;
+
+    z-index: 9999;
+}
+.jugarGame2 p {
+
+    color: white;
+    font-family: 'SF-Compact';
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+
+}
+
+.jugarGame2 .tortuga_header {
+    width: 60px;
+}
+
+
+.jugarGame2 .tortuga_header {
+    width: 60px;
+}
+.jugarGame2 .volver {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.jugarGame2 .volver img {
+    width: 30px;
+}

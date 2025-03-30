@@ -1,0 +1,472 @@
+@media (orientation: landscape) {
+    @keyframes moveSeaPoseidonia {
+        0% {
+            background-position: 100% 100%;
+        }
+        
+        100% {
+            background-position: 0% 100%;
+        }
+    }
+
+    #gameAreaPosidonias {
+        /* position: relative; */
+        /* width: 100vw; */
+        /* height: 100vh; */
+        border: none;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+    }
+
+    #skyPosidonias {
+        background-color: #87CEEB; 
+        position: relative; 
+        width: 100%;
+        height: 50%;
+    }
+    .cloudPosidonia {
+        background-size: contain;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        /* left: 100%; */
+    }
+
+    .cloudPosidonia1 {
+        background-image: url('https://i.ibb.co/whgKBFQ/trotugas-08.png');
+        left: 10%; /* Posición horizontal inicial para la nube1 */
+        top: 10%; /* Posición vertical inicial para la nube1 */
+        height: auto;
+        background-repeat: no-repeat;
+    }
+
+    .cloudPosidonia2 {
+        background-image: url('https://i.ibb.co/vwMkcxZ/trotugas-07.png');
+        width: 80px;
+        left: 40%; /* Posición horizontal inicial para la nube2 */
+        top: 40%; /* Posición vertical inicial para la nube2 */
+        height: 100%;
+        background-repeat: no-repeat;
+
+    }
+
+    .cloudPosidonia3 {
+        background-image: url('https://i.ibb.co/PtnTwrZ/trotugas-06.png');
+        width: 70px; 
+        left: 70%; /* Posición horizontal inicial para la nube3 */
+        top: 70%; /* Posición vertical inicial para la nube3 */
+        height: 100%;
+        background-repeat: no-repeat;
+
+
+    }
+    .cloudPosidonia1, .cloudPosidonia2, .cloudPosidonia3 {
+        /* Asegúrate de que la posición de inicio no corte las nubes verticalmente */
+        top: calc(100% - 60px); /* Asumiendo que 60px es la altura máxima de las nubes */
+    }
+    .paused-animationPosidonias {
+        animation-play-state: paused !important;
+        -webkit-animation-play-state: paused !important; /* Soporte para navegadores antiguos */
+    }
+
+    @keyframes moveCloud {
+        0% {
+            left: 100%; 
+        }
+        100% {
+            left: -150%;  /* Ajustado para asegurarse de que las nubes se muevan completamente fuera del área del cielo */
+        }
+    }
+
+    #seaPosidonia {
+        background-image: url('../images/fondo_mar_posidonias.jpg'); /* Color azul marino */
+        background-repeat: repeat-x; 
+        animation: moveSeaPoseidonia 15s linear infinite; 
+        width: 100%;
+        height: 100%; /* Ocupa la mitad inferior de gameArea */
+        position: absolute;
+        bottom: 0;
+        background-size: cover;
+    }
+
+    .objectPosidonia {
+        position: absolute;
+    }
+
+    #boatPosidonia {
+        background-image: url(../images/barco_poseidonia.gif);
+        background-size: contain;
+        width: 140px;
+        height: 45px;
+        left: calc(45% - 25%);
+        top: 24%;
+        transform: translateY(-25%);
+        background-repeat: no-repeat;
+    }
+
+    .posidonia {
+        background-image: url('../images/posidonia.gif'); 
+        background-size: cover;
+        width: 40px; /* Ancho de la tortuga */
+        height: 40px; /* Alto de la tortuga */
+        right: 0;
+    }
+
+    #scorePosidonias {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10; /* Asegurar que el marcador se muestre por encima de las otras capas */
+        font-size: 20px;
+        /*font-family: 'Open Sans', sans-serif;*/
+        font-family: 'Heebo', sans-serif;
+    }
+
+    .puntuacionPosidonias .imgScore {
+        width: 40px;
+        height: 100%;
+    }
+
+    .puntuacionPosidonias {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .puntosTitlePosidonias {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .puntosTitlePosidonias p {
+        
+    }
+
+    .puntosTitlePosidonias .title {
+        font-weight: 900;
+        font-size: 22px;
+        color: white;
+        margin: 0;
+    }
+
+    .puntosTitlePosidonias .descripcion {
+        font-weight: 300;
+        font-size: 12px;
+        color: white;
+        margin: -3px 0 0 0 ;
+    }
+
+    .puntosTitlePosidonias .descripcion #points,  .puntosTitlePosidonias .descripcion .nm{
+        font-size: 16px;
+    }
+
+    .puntosTitlePosidonias hr {
+        width: 35%;
+        border: 1px solid white;
+        align-self: initial;
+        margin: 7px 0;
+    }
+
+    .recordPosidonias {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .recordPosidonias .imgScore {
+        width: 30px;
+        height: 100%;
+        margin: 0 7px;
+    }
+
+    .recordPosidonias .descripcion {
+        font-weight: 300;
+        font-size: 12px;
+        color: white;
+        margin: -10px 0 0 0 ;
+    }
+
+    .recordPosidonias .bold {
+        font-weight: 900;
+        font-size: 16px;
+    }
+
+    .recordPosidonias .puntosRecord {
+        font-size: 16px;
+
+    }
+
+    .logoPosidonia img {
+        width: 150px;
+        height: auto;
+        margin: 22px;
+    }
+
+    .logoPosidonia {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5000;
+    }
+
+    .logoFooterPosidonias img {
+        width: 100px;
+        height: auto;
+        margin: 22px;
+    }
+
+    .logoFooterPosidonias {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 5000;
+    }
+
+    .control-buttons {
+        position: absolute;
+        bottom: 10%;
+        left: 10px;
+        z-index: 5000; /* Asegurarse que aparece por encima de todo */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .control-buttons button {
+        background-color: rgba(255,255,255,0.7);
+        border: none;
+        border-radius: 50%;
+        padding: 10px 20px;
+        font-size: 24px;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+
+    .control-buttons button:active {
+        background-color: rgba(255,255,255,0.9);
+    }
+    
+    /*#scoreScreenPosidonias {
+        display: block;
+        z-index: 88888;
+        position: absolute;
+        background-color: rgba(255,255,255, 0.8);
+        width: 100%;
+        height: 100%;
+        padding: 3rem;
+        top: 0;
+        left: 0;
+    }*/
+    #gameAreaPosidonias .volverGameTortugas {
+        /* width: 20px;
+        height: 20px; */
+        position: absolute;
+        top: 18px;
+        z-index: 99999;
+        right: 18px;
+        display: flex;
+        flex-direction: row;
+        width: 75px;
+        justify-content: space-around;
+    }
+    #gameAreaPosidonias #botonVolverPosidonias, #gameAreaPosidonias #botonSalirPosidonias,  #gameAreaPosidonias #botonPausarPosidonias{
+        width: 20px;
+        height: 20px;
+    }
+    #scoreScreenPosidonias {
+        display: block;
+        z-index: 999999;
+        position: absolute;
+        /*background-color: rgba(255,255,255, 0.8);*/
+        background-image: url('../images/fondo_score_posidonias.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 101%;
+        height: 102%;
+        padding: 0rem;
+        top: -7px;
+        left: -2px;
+    }
+    #scoreScreenPosidonias h2 {
+        margin: 0;
+    }
+    #scoreScreenPosidonias .card {
+        background-color: white;
+        padding: 2rem;
+        width: 80%;
+        border-radius: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+    }
+    #scoreScreenPosidonias .enhorabuena {
+        margin: 0 auto;
+        width: 300px;
+    }
+    #scoreScreenPosidonias p {
+        margin: 0 auto;
+    }
+    #scoreScreenPosidonias .puntuacionFinal {
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+        color: #357ABD;
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        font-weight: 500;
+    }
+    #scoreScreenPosidonias #finalScore {
+        padding: 0.2rem 1rem;
+        border: 2px solid #357ABD;
+        border-radius: 15px;
+        min-width: 100px;
+        width: 100px;
+
+        margin-left: 1rem;
+    }
+    #scoreScreenPosidonias .puntuacionFinalDiv {
+
+        display: flex;
+        flex-direction: column;
+        /* justify-content: left; */
+        align-items: flex-start;
+  
+    }
+
+    #scoreScreenPosidonias .titulo {
+        width: 220px;
+        text-align: right;
+        padding: 0 0.7rem 0 0;
+    }
+    #scoreScreenPosidonias input {
+        width: 60px;
+        border: 0;
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+        color: #357ABD;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    #scoreScreenPosidonias .puntuacionFinal:last-child {
+        margin-top: 10px;
+    }
+    #scoreScreenPosidonias .btn{
+        background-color: #357ABD;
+        color: white;
+        border: 1px solid #357ABD;
+        padding: 0.4rem 1.5rem;
+        font-size: 20px;
+        border-radius: 12px;
+        margin-left: 20px;
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+    }
+    #scoreScreenPosidonias .btn-segundo{
+        background-color: #E83287;
+        color: white;
+        border: 1px solid #E83287;
+        padding: 0.4rem 1.5rem;
+        font-size: 20px;
+        border-radius: 12px;
+        margin-left: 20px;
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+        width: 100%;
+        margin-left: 0;
+    }
+    .btn-resumen {
+        background-color: #357ABD;
+        color: white;
+        border: 1px solid #357ABD;
+        padding: 0.4rem 1.5rem;
+        font-size: 20px;
+        border-radius: 12px;
+
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+    }
+    #scoreScreenPosidonias .btn-salir{
+        background-color: #E83287;
+        color: white;
+        border: 1px solid #E83287;
+        padding: 0.4rem 1.5rem;
+        font-size: 20px;
+        border-radius: 12px;
+        margin-left: 20px;
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+    }
+
+    #scoreScreenPosidonias  .listaPuntuaciones {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+    }
+    #scoreScreenPosidonias  .mejoresPuntuaciones {
+        display: flex;
+        width: 50%;
+    }
+    #scoreScreenPosidonias .transmapi {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    #scoreScreenPosidonias  .mejoresPuntuaciones h3 {
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+        color: #357ABD;
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+        margin-bottom: 12px;
+    }
+    #scoreScreenPosidonias .transmapi p {
+        text-transform: uppercase;
+        font-family: 'SF-Compact';
+        color: #357ABD;
+        font-size: 10px;
+        font-weight: 500;
+    }
+    #scoreScreenPosidonias .transmapi .tortugas_img{
+        margin: 15px 0;
+    }
+    #scoreScreenPosidonias .transmapi .cantidad {
+        background-color: #E83587 ;
+        color: white;
+        font-family: 'SF-Compact';
+        font-size: 18px;
+        font-weight: 700;
+        width: 115px;
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 12px;
+    }
+    #scoreScreenPosidonias .transmapi .logo_trasmapi{
+        width: 190px;
+        margin: 0 auto;
+    }
+    #scoreScreenPosidonias .mejoresPuntuaciones .left img {
+        width: 80px;
+    }
+
+    #scoreListaPosidonias #scoreListposidonias {
+        list-style: none;
+        width: 100%;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .paused-animationPosidonias {
+        animation-play-state: paused !important;
+    }
+}

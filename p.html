@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="instructionModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- <p>Para una experiencia a pantalla completa, rota tu dispositivo a modo horizontal y usa la función de zoom para agrandar el contenido del juego.</p> -->
+            <button onclick="toggleFullScreen()">Pantalla Completa</button>
+        </div>
+    </div>
+    <iframe
+        id="inlineFrameExample"
+        title="Inline Frame Example"
+        allowfullscreen="true"
+        scrolling="no"
+        src="https://hawkins.es/game">
+    </iframe>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #inlineFrameExample {
+            position: fixed;   
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 70%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // Detecta si el usuario está en un iPhone usando Safari
+        var isiPhone = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+        if (isiPhone) {
+            // Muestra el modal con las instrucciones
+            var modal = document.getElementById('instructionModal');
+            var span = document.getElementsByClassName("close")[0];
+
+            modal.style.display = "block";
+
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            function openInNewTab() {
+            var win = window.open('https://hawkins.es/game', '_blank');
+            win.focus();
+            }
+        }
+
+        function toggleFullScreen() {
+            var modal = document.getElementById('instructionModal');
+            modal.style.display = "none";
+
+            var iframe = document.getElementById("inlineFrameExample");
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            }
+            }
+    </script>
+</body>
+</html>

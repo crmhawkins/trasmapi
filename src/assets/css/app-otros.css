@@ -1,0 +1,55 @@
+@media (orientation: landscape) {
+    .area_entrada {
+        background-image: url('../images/pantalla_inicio_io_fondos.jpg');
+      background-size: cover;
+      background-position: center;
+      /* margin-top: -15px; */
+      position: absolute;
+      /* top: 15px; */
+      z-index: 99999;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      margin-bottom: 0;
+      border: none;
+      margin-left:0;
+      margin-right: 0;
+      left: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .imgArea {
+        background-image: url(../images/pantalla_inicio_io_front.png);
+        width: 100%;
+        height: inherit;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+}
+/* Estilos específicos para tablets */
+@media (min-width: 845px) and (max-width: 1024px) {
+    .area_entrada {
+        background-image: url('../images/pantalla_inicio_io_fondos.jpg');
+        background-size: cover;
+        background-position: center;
+        /* margin-top: -15px; */
+        position: absolute;
+        /* top: 15px; */
+        z-index: 99999;
+        display: block;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 0;
+        border: none;
+        margin-left:0;
+        margin-right: 0;
+        left: 0;
+      }
+      .imgArea {
+        background-image: url('../images/pantalla_inicio_io_front.png');
+        width: 85%;
+        height: auto;
+      }
+}
