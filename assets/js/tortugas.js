@@ -79,7 +79,7 @@ export default  function tortugas(){
     });
     function startGame() {
 
-        fetch('getDataTortuga.php')
+        fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
             .then(response => response.json())
             .then(data => {
                 // Ordenar el array por puntuación de forma descendente
@@ -690,24 +690,24 @@ export default  function tortugas(){
             const playerName = document.getElementById('playerNameTortuga').value;
             // const score = 100;  // Cambia esto por la puntuación deseada
 
-            fetch('saveDataTortugas.php', {
+            fetch('https://trasmapiback.hawkins.es/api/save/tortugas', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: `playerName=${playerName}&score=${score}`,
+                body: JSON.stringify({
+                    nombre: playerName,
+                    puntuacion: score
+                }),
             })
             .then(response => response.text())
             .then(data => {
                 console.log(data);  // Debería imprimir "Datos guardados."
                 
-                fetch('getDataTortuga.php')
+                fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
                     .then(response => response.json())
                     .then(data => {
-                        // Ordenar el array por puntuación de forma descendente
-                        const sortedData = data.sort((a, b) => b.score - a.score);
-                        
-                        // Tomar las primeras 10 puntuaciones
+                        const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
                         const top10 = sortedData.slice(0, 10);
                         document.getElementById("scoreDatos").style.display = 'none';
                         document.getElementById("scoreLista").style.display = 'block';

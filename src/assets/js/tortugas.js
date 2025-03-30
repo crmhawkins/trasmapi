@@ -79,7 +79,7 @@ export default  function tortugas(){
     });
     function startGame() {
 
-        fetch('getDataTortuga.php')
+        fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
             .then(response => response.json())
             .then(data => {
                 // Ordenar el array por puntuación de forma descendente
@@ -690,7 +690,7 @@ export default  function tortugas(){
             const playerName = document.getElementById('playerNameTortuga').value;
             // const score = 100;  // Cambia esto por la puntuación deseada
 
-            fetch('saveDataTortugas.php', {
+            fetch('https://trasmapiback.hawkins.es/api/save/tortugas', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -701,7 +701,7 @@ export default  function tortugas(){
             .then(data => {
                 console.log(data);  // Debería imprimir "Datos guardados."
                 
-                fetch('getDataTortuga.php')
+                fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
                     .then(response => response.json())
                     .then(data => {
                         // Ordenar el array por puntuación de forma descendente

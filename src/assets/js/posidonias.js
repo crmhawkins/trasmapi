@@ -78,21 +78,24 @@ export default  function posidonias(){
     });
     
     function startGame() {
-        fetch('getDataPosidonias.php')
-            .then(response => response.json())
-            .then(data => {
-                // Ordenar el array por puntuación de forma descendente
-                const sortedData = data.sort((a, b) => b.score - a.score);
-                
-                // Tomar las primeras 10 puntuaciones
-                const top10 = sortedData.slice(0, 1);
-                console.log(top10[0].score)
-                document.getElementById("puntosPosidonias").textContent  = top10[0].score
-                console.log(top10)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        fetch('https://trasmapiback.hawkins.es/api/data/posidonias')
+        .then(response => response.json())
+        .then(data => {
+            // Ordenar por puntuación descendente
+            const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
+
+            // Tomar la puntuación más alta
+            const top = sortedData.slice(0, 1);
+
+            console.log(top[0].puntuacion);
+
+            document.getElementById("puntosPosidonias").textContent = top[0].puntuacion;
+
+            console.log(top);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
         // Aquí iría todo el código de inicialización de tu juego
         // Por ejemplo, la parte de la música, la creación de tortugas, el movimiento del barco, etc.
         const boat = document.getElementById('boatPosidonia');
@@ -642,7 +645,7 @@ export default  function posidonias(){
             const playerName = document.getElementById('playerNamePosidonias').value;
             // const score = 100;  // Cambia esto por la puntuación deseada
 
-            fetch('saveDataPosidonias.php', {
+            fetch('https://trasmapiback.hawkins.es/api/save/posidonias', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -653,7 +656,7 @@ export default  function posidonias(){
             .then(data => {
                 console.log(data);  // Debería imprimir "Datos guardados."
                 
-                fetch('getDataPosidonias.php')
+                fetch('https://trasmapiback.hawkins.es/api/data/posidonias')
                     .then(response => response.json())
                     .then(data => {
                         // Ordenar el array por puntuación de forma descendente

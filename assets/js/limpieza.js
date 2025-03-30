@@ -74,22 +74,26 @@ export default  function limpieza(){
     });
     
 
-    function startGame() {
-        fetch('getDataLimpieza.php')
-            .then(response => response.json())
-            .then(data => {
-                // Ordenar el array por puntuación de forma descendente
-                const sortedData = data.sort((a, b) => b.score - a.score);
-                
-                // Tomar las primeras 10 puntuaciones
-                const top10 = sortedData.slice(0, 1);
-                console.log(top10[0].score)
-                document.getElementById("puntosLimpieza").textContent  = top10[0].score
-                console.log(top10)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        function startGame() {
+            fetch('https://trasmapiback.hawkins.es/api/data/limpieza')
+        .then(response => response.json())
+        .then(data => {
+            // Ordenar por puntuación descendente
+            const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
+
+            // Tomar la puntuación más alta
+            const top = sortedData.slice(0, 1);
+
+            console.log(top[0].puntuacion);
+
+            document.getElementById("puntosLimpieza").textContent = top[0].puntuacion;
+
+            console.log(top);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
         // Aquí iría todo el código de inicialización de tu juego
         // Por ejemplo, la parte de la música, la creación de tortugas, el movimiento del barco, etc.
         const boat = document.getElementById('boatLimpieza');
@@ -787,36 +791,38 @@ export default  function limpieza(){
             const playerName = document.getElementById('playerNameLimpieza').value;
             // const score = 100;  // Cambia esto por la puntuación deseada
 
-            fetch('saveDataLimpieza.php', {
+            fetch('https://trasmapiback.hawkins.es/api/save/limpieza', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: `playerName=${playerName}&score=${score}`,
+                body: JSON.stringify({
+                    nombre: playerName,
+                    puntuacion: score
+                }),
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                console.log(data);  // Debería imprimir "Datos guardados."
-                
-                fetch('getDataLimpieza.php')
+                console.log(data); // Confirmación desde Laravel
+            
+                // Obtener y mostrar los top 10
+                fetch('https://trasmapiback.hawkins.es/api/data/limpieza')
                     .then(response => response.json())
                     .then(data => {
-                        // Ordenar el array por puntuación de forma descendente
-                        const sortedData = data.sort((a, b) => b.score - a.score);
-                        
-                        // Tomar las primeras 10 puntuaciones
+                        const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
                         const top10 = sortedData.slice(0, 10);
                         document.getElementById("scoreDatosLimpieza").style.display = 'none';
                         document.getElementById("scoreListaLimpieza").style.display = 'block';
                         displayScores(top10);
                     })
                     .catch(error => {
-                        console.error('Error:', error);
+                        console.error('Error al cargar datos:', error);
                     });
             })
             .catch(error => {
-                console.error('Error:', error);
+                console.error('Error al guardar datos:', error);
             });
+
         });
 
         function displayScores(scores) {

@@ -1,0 +1,13 @@
+{
+  "appId": "com.hawkins.trasmapi",
+  "appName": "transmapi",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "android": {
+    "webContentsDebuggingEnabled": true,
+    "allowMixedContent": true
+  },
+  "server": {
+    "cleartext": true
+  }
+}
