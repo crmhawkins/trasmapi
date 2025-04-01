@@ -12,6 +12,14 @@ workflows:
       - npm:
           inputs:
             - command: install
+      - script:
+          title: Clean and install Pods
+          inputs:
+            - content: |
+                # Limpiar y reinstalar CocoaPods
+                cd "$BITRISE_SOURCE_DIR/ios"
+                pod deintegrate
+                pod install --repo-update
       - cocoapods-install:
           title: Install CocoaPods dependencies
       - xcode-archive:
