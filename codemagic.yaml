@@ -1,3 +1,9 @@
+integrations:
+  app_store_connect:
+    # Asegúrate de que la integración esté configurada en Codemagic
+    auth: 
+      integration: true  # Se especifica que se use la integración configurada en Codemagic
+
 workflows:
   ios-workflow:
     name: iOS Workflow
@@ -34,7 +40,3 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-
-integrations:
-  app_store_connect:
-    auth: integration
