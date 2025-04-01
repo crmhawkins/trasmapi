@@ -1,16 +1,21 @@
-integrations:
-  app_store_connect:
-    auth: integration
-
 workflows:
   ios-workflow:
     name: iOS Workflow
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
+      groups:
+        - app_store_credentials
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
     scripts:
       - name: Instalar dependencias
         script: |
@@ -29,3 +34,7 @@ workflows:
       app_store_connect:
         auth: integration
         submit_to_testflight: true
+
+integrations:
+  app_store_connect:
+    auth: integration
