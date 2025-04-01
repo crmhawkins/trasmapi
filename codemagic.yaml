@@ -9,6 +9,9 @@ workflows:
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
+    integrations:
+      app_store_connect: # Asegúrate de que esta línea esté aquí
+        auth: integration
     triggering:
       events:
         - push
