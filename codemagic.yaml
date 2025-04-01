@@ -7,6 +7,9 @@ workflows:
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
+    integrations:
+      app_store_connect:
+        auth: integration  # La integración de App Store Connect
     triggering:
       events:
         - push
@@ -30,9 +33,5 @@ workflows:
       - build/ios/iphoneos/*.ipa
     publishing:
       app_store_connect:
-        auth: integration  # Aquí se coloca correctamente la autenticación
+        auth: integration  # La autenticación en el bloque de publicación
         submit_to_testflight: true
-
-integrations:
-  app_store_connect:
-    auth: integration  # Autenticación a través de la integración de Codemagic
