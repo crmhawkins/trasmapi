@@ -7,6 +7,16 @@ workflows:
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
+    integrations:
+      app_store_connect:
+        # Agregar todos los campos necesarios para la integración con App Store Connect
+        name: "Trasmapi"  # Un nombre que elijas para la integración
+        type: "app_store_connect"  # El tipo de integración, esto siempre será "app_store_connect"
+        filePath: "path/to/your/api_key.p8"  # La ruta al archivo .p8 de tu clave API
+        group: "trasmapi"  # El grupo asociado a tu integración
+        source: true  # Permite el acceso a esta integración desde Codemagic
+        auth: integration  # Autenticación a través de Codemagic configurado previamente
+
     triggering:
       events:
         - push
@@ -14,10 +24,7 @@ workflows:
         - pattern: main
           include: true
           source: true
-    integrations:
-      app_store_connect:
-        # Autenticación de App Store Connect correctamente definida
-        auth: integration  # Usa la integración que has configurado en Codemagic
+
     scripts:
       - name: Instalar dependencias
         script: |
@@ -30,9 +37,12 @@ workflows:
             -sdk iphoneos \
             -configuration Release \
             CODE_SIGN_STYLE=Automatic
+
     artifacts:
       - build/ios/iphoneos/*.ipa
+
     publishing:
       app_store_connect:
-        auth: integration  # Usa la integración para publicación en App Store Connect
-        submit_to_testflight: true
+        # Publicar la app en App Store Connect con la integración configurada
+        auth: integration  # Autenticación a través de la integración
+        submit_to_testflight: true  # Subir la app a TestFlight
