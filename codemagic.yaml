@@ -7,9 +7,6 @@ workflows:
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
-    integrations:
-      app_store_connect:
-        auth: integration  # Definir autenticación para la integración
     triggering:
       events:
         - push
@@ -17,6 +14,10 @@ workflows:
         - pattern: main
           include: true
           source: true
+    integrations:
+      app_store_connect:
+        # Autenticación de App Store Connect correctamente definida
+        auth: integration  # Usa la integración que has configurado en Codemagic
     scripts:
       - name: Instalar dependencias
         script: |
@@ -33,5 +34,5 @@ workflows:
       - build/ios/iphoneos/*.ipa
     publishing:
       app_store_connect:
-        auth: integration  # Usar integración de App Store Connect
+        auth: integration  # Usa la integración para publicación en App Store Connect
         submit_to_testflight: true
