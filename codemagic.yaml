@@ -1,8 +1,7 @@
 integrations:
   app_store_connect:
-    # Asegúrate de que la integración esté configurada en Codemagic
-    auth: 
-      integration: true  # Se especifica que se use la integración configurada en Codemagic
+    auth:
+      integration: true   # Establece que Codemagic utilice la autenticación que ya has configurado
 
 workflows:
   ios-workflow:
@@ -10,8 +9,6 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
-      groups:
-        - app_store_credentials
       vars:
         XCODE_WORKSPACE: "TuProyecto.xcworkspace"
         XCODE_SCHEME: "TuEsquema"
