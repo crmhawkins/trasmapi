@@ -82,18 +82,19 @@ export default  function tortugas(){
         fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
             .then(response => response.json())
             .then(data => {
-                // Ordenar el array por puntuación de forma descendente
-                const sortedData = data.sort((a, b) => b.score - a.score);
-                
-                // Tomar las primeras 10 puntuaciones
-                const top10 = sortedData.slice(0, 1);
-                console.log(top10[0].score)
-                document.getElementById("puntosTortugas").textContent  = top10[0].score
-                console.log(top10)
+                const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion); // 👈 usa "puntuacion"
+                const top = sortedData[0];
+
+                if (top) {
+                    document.getElementById("puntosTortugas").textContent = top.puntuacion;
+                } else {
+                    document.getElementById("puntosTortugas").textContent = 0;
+                }
             })
             .catch(error => {
-                console.error('Error:', error);
-            });
+                console.error('Error al obtener record:', error);
+        });
+
         // Aquí iría todo el código de inicialización de tu juego
         // Por ejemplo, la parte de la música, la creación de tortugas, el movimiento del barco, etc.
         const boat = document.getElementById('boat');
@@ -238,8 +239,8 @@ export default  function tortugas(){
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
-            score = 0;
-            updateScore(score);
+            // score = 0;
+            updateScore(0, true); // ✅ reinicia a cero
             document.getElementById('sea').classList.remove('paused-animation');
             gameArea.style.display = 'none';
             document.getElementById('startScreen').style.display = 'flex';
@@ -430,10 +431,19 @@ export default  function tortugas(){
         // }, { passive: false });
     
         // Actualizar marcador
-        function updateScore(points) {
-            score += points;
+        // function updateScore(points) {
+        //     score += points;
+        //     scoreElement.textContent = score;
+        // }
+        function updateScore(points = 0, reset = false) {
+            if (reset) {
+                score = 0;
+            } else {
+                score += points;
+            }
             scoreElement.textContent = score;
         }
+        
 
         // Resetear juego
         function resetGame() {
@@ -499,8 +509,10 @@ export default  function tortugas(){
             turtleSpeed = 120;
             turtleSpawnRate = 4000;
             music.volume = 0.6;
-            score = 0;
-            updateScore(score);
+            // score = 0;
+            // updateScore(score);
+            updateScore(0, true); // ✅ reinicia a cero
+
             document.getElementById('playerNameTortuga').value = '';
             document.getElementById("scoreScreen").style.display = "none";
             document.getElementById("scoreDatos").style.display = 'block';
@@ -705,7 +717,7 @@ export default  function tortugas(){
                     .then(response => response.json())
                     .then(data => {
                         // Ordenar el array por puntuación de forma descendente
-                        const sortedData = data.sort((a, b) => b.score - a.score);
+                        const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
                         
                         // Tomar las primeras 10 puntuaciones
                         const top10 = sortedData.slice(0, 10);
@@ -753,11 +765,11 @@ export default  function tortugas(){
                 const row = tableBody.insertRow();
 
                 const playerNameCell = row.insertCell(0);
-                playerNameCell.textContent = score.playerName;
+                playerNameCell.textContent = score.nombre;
                 playerNameCell.classList.add('playerName');  // Añadir clase a la celda del nombre
 
                 const scoreCell = row.insertCell(1);
-                scoreCell.textContent = score.score;
+                scoreCell.textContent = score.puntuacion;
                 scoreCell.classList.add('scorePoints');  // Añadir clase a la celda de puntuación
 
             });

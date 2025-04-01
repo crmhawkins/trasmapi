@@ -1,22 +1,53 @@
 {
-    "name": "Be Blue | Game Green",
-    "short_name": "Be Blue | Game Green",
-    "description": "Juego de BE BLUE | GAME GREEN Responsabilidad Social BE BLUE,podrás aportar tu granito en la ayuda para la conservación de esta especie declarada vulnerable a la extinción. Tu preferencia de juego, y tu puntuación, nos indicarán dónde prefieres que se invierta más este mes: en conservación, investigación o educación.",
-    "start_url": "/game",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
-    "icons": [
-      {
-        "src": "icono-192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "icono-512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
+  "name": "Be Blue | Game Green",
+  "short_name": "Be Blue | Game Green",
+  "description": "Juego de BE BLUE | GAME GREEN Responsabilidad Social BE BLUE,podrás aportar tu granito en la ayuda para la conservación de esta especie declarada vulnerable a la extinción. Tu preferencia de juego, y tu puntuación, nos indicarán dónde prefieres que se invierta más este mes: en conservación, investigación o educación.",
+  "start_url": "/game",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "assets/icons/icon-48.webp",
+      "type": "image/png",
+      "sizes": "48x48",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-72.webp",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-96.webp",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-128.webp",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-192.webp",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-256.webp",
+      "type": "image/png",
+      "sizes": "256x256",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512.webp",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

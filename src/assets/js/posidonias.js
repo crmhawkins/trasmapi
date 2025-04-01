@@ -83,15 +83,21 @@ export default  function posidonias(){
         .then(data => {
             // Ordenar por puntuación descendente
             const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
+            const top = sortedData[0];
 
             // Tomar la puntuación más alta
-            const top = sortedData.slice(0, 1);
+            // const top = sortedData.slice(0, 1);
 
-            console.log(top[0].puntuacion);
+            if (top) {
+                document.getElementById("puntosPosidonias").textContent = top.puntuacion;
+            } else {
+                document.getElementById("puntosPosidonias").textContent = 0;
+            }
+            // console.log(top[0].puntuacion);
 
-            document.getElementById("puntosPosidonias").textContent = top[0].puntuacion;
+            // document.getElementById("puntosPosidonias").textContent = top[0].puntuacion;
 
-            console.log(top);
+            // console.log(top);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -687,11 +693,11 @@ export default  function posidonias(){
                 const row = tableBody.insertRow();
 
                 const playerNameCell = row.insertCell(0);
-                playerNameCell.textContent = score.playerName;
+                playerNameCell.textContent = score.nombre;
                 playerNameCell.classList.add('playerName');  // Añadir clase a la celda del nombre
 
                 const scoreCell = row.insertCell(1);
-                scoreCell.textContent = score.score;
+                scoreCell.textContent = score.puntuacion;
                 scoreCell.classList.add('scorePoints');  // Añadir clase a la celda de puntuación
 
             });

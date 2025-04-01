@@ -80,15 +80,21 @@ export default  function limpieza(){
         .then(data => {
             // Ordenar por puntuación descendente
             const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
+            const top = sortedData[0];
 
             // Tomar la puntuación más alta
-            const top = sortedData.slice(0, 1);
+            // const top = sortedData.slice(0, 1);
+            if (top) {
+                document.getElementById("puntosLimpieza").textContent = top.puntuacion;
+            } else {
+                document.getElementById("puntosLimpieza").textContent = 0;
+            }
 
-            console.log(top[0].puntuacion);
+            // console.log(top[0].puntuacion);
 
-            document.getElementById("puntosLimpieza").textContent = top[0].puntuacion;
+            // document.getElementById("puntosLimpieza").textContent = top[0].puntuacion;
 
-            console.log(top);
+            // console.log(top);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -794,12 +800,10 @@ export default  function limpieza(){
             fetch('https://trasmapiback.hawkins.es/api/save/limpieza', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: JSON.stringify({
-                    nombre: playerName,
-                    puntuacion: score
-                }),
+                body: `playerName=${playerName}&score=${score}`,
+
             })
             .then(response => response.json())
             .then(data => {
@@ -835,11 +839,11 @@ export default  function limpieza(){
                 const row = tableBody.insertRow();
 
                 const playerNameCell = row.insertCell(0);
-                playerNameCell.textContent = score.playerName;
+                playerNameCell.textContent = score.nombre;
                 playerNameCell.classList.add('playerName');  // Añadir clase a la celda del nombre
 
                 const scoreCell = row.insertCell(1);
-                scoreCell.textContent = score.score;
+                scoreCell.textContent = score.puntuacion;
                 scoreCell.classList.add('scorePoints');  // Añadir clase a la celda de puntuación
 
             });

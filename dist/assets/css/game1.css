@@ -1,0 +1,240 @@
+.game1 {
+    background-color: #3B7ABE;
+    background-image: url('../images/fondo_tortuga.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 40px;
+    width: 33.33%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+.tortuga_header {
+    width: 30px;
+    margin: 0 auto;
+    margin-top: 0.7rem;
+}
+.logo_header {
+    margin: 0 auto;
+    /*margin-top: 1rem;*/
+    width: 120px;
+    text-align: center;
+
+}
+.game1 .logo_header img {
+    width: 120px;
+}
+ .logo_header_info {
+    margin: 0 auto;
+    /*margin-top: 1rem;*/
+    width: 120px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.logo_header_info img {
+    width: 100%
+}
+.game1 .sub_title {
+    margin-bottom: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+    font-size: 10px;
+    font-weight: 100;
+}
+.game1 h3{
+    margin-bottom: 0;
+    margin-top: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+    font-size: 10px;
+    font-weight: bold;
+}
+.game1 h2{
+    margin-bottom: 6px;
+    color: white;
+    text-align: center;
+    font-family: 'Impact';
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 6px;
+}
+.game1 p {
+    margin-bottom: 0;
+    color: white;
+    text-align: center;
+    font-family: 'SF-Compact';
+    font-size: 6px;
+    margin-top: 0;
+}
+.game1 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 8px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.game1 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 8px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.game1 .barco-footer {
+    width: 80%;
+    margin-top: 1rem;
+}
+.game1 .titulo{
+    margin-top: 0.5rem;
+}
+
+
+/* Informacion del Juego */ 
+.infoGame1 {
+    background-color: #3B7ABE;
+    background-image: url('../images/fondo_tortuga.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.infoGame1 .barco-footer {
+    width: 40%;
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 24%;
+    left: 3%;
+}
+.infoGame1 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.infoGame1 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 1REM;
+}
+.infoGame1 .botones {
+    position: relative;
+
+    z-index: 9999;
+}
+.infoGame1 p {
+    color: white;
+    font-family: 'SF-Compact';
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+
+}
+
+/* Comenzar Juego */
+.jugarGame1 {
+    background-color: #3B7ABE;
+    background-image: url('../images/fondo_tortuga.svg');
+    background-repeat: no-repeat;
+    background-size: inherit;
+    background-position: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.jugarGame1 .barco-footer {
+    width: 40%;
+    margin-top: 1rem;
+    position: fixed;
+    bottom: 24%;
+    left: 3%;
+}
+.jugarGame1 .btn {
+    background-color: #E83587;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+}
+.jugarGame1 .btn-secundario {
+    background-color: #64BC9C;
+    font-family: 'SF-Compact';
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 12px ;
+    text-transform: uppercase;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    margin-right: 1REM;
+}
+.jugarGame1 .botones {
+    position: relative;
+
+    z-index: 9999;
+}
+.jugarGame1 p {
+
+    color: white;
+    font-family: 'SF-Compact';
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+
+}
+
+.jugarGame1 .tortuga_header {
+    width: 60px;
+}
+.jugarGame1 .volver {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.jugarGame1 .volver img {
+    width: 30px;
+}

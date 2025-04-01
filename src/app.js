@@ -7,12 +7,24 @@ window.addEventListener('load', function () {
     window.scrollTo({ top: 1, behavior: 'smooth' });
 
     console.log('Iniciando el Juego... by Hawkins')
+    const loader = document.querySelector(".intro_loader");
+    const content = document.querySelector(".intro_content");
+    
+    // Mostrar contenido animado tras la pantalla oscura
+    setTimeout(() => {
+        loader.style.display = "none";
+        content.classList.remove("oculto");
+    }, 1000); // mismo delay que `animation-delay`
+
+
     document.addEventListener('dblclick', function(event) {
         event.preventDefault();
     }, { passive: false });
     tortugas()
     posidonias()
     limpieza()
+    
+
     document.getElementById("addToHomeBtn").addEventListener("click", function() {
         setTimeout(function() {
             // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
@@ -34,7 +46,8 @@ window.addEventListener('load', function () {
             }
         }
     
-        document.getElementById("addToHomeBtn").style.display = 'none';
+        document.getElementById("introScreen").style.display = 'none';
+        document.getElementById("startScreen").style.display = 'flex';
     });
     
     
