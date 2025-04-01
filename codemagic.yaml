@@ -9,7 +9,7 @@ workflows:
         XCODE_SCHEME: "TuEsquema"
     integrations:
       app_store_connect:
-        auth: integration  # La integración de App Store Connect
+        auth: integration  # Definir autenticación para la integración
     triggering:
       events:
         - push
@@ -33,5 +33,5 @@ workflows:
       - build/ios/iphoneos/*.ipa
     publishing:
       app_store_connect:
-        auth: integration  # La autenticación en el bloque de publicación
+        auth: integration  # Usar integración de App Store Connect
         submit_to_testflight: true
