@@ -1,8 +1,3 @@
-integrations:
-  app_store_connect:
-    auth:
-      integration: true   # Establece que Codemagic utilice la autenticación que ya has configurado
-
 workflows:
   ios-workflow:
     name: iOS Workflow
@@ -35,5 +30,9 @@ workflows:
       - build/ios/iphoneos/*.ipa
     publishing:
       app_store_connect:
-        auth: integration
+        auth: integration  # Aquí se coloca correctamente la autenticación
         submit_to_testflight: true
+
+integrations:
+  app_store_connect:
+    auth: integration  # Autenticación a través de la integración de Codemagic
