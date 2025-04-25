@@ -18,7 +18,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        { from: 'src/*.php', to: '[name][ext]' },
+        //{ from: 'src/*.php', to: '[name][ext]' },
         { from: 'src/assets/images', to: 'assets/images' },
         { from: 'src/assets/audio', to: 'assets/audio' },
         { from: 'src/manifest.json', to: 'manifest.json' },

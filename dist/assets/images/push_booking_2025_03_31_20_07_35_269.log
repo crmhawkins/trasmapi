@@ -1,0 +1,497 @@
+Request:
+{
+  "OTA_HotelResNotifRQ": {
+    "HotelReservations": [
+      {
+        "HotelReservation": {
+          "services": [],
+          "ResGlobalInfo": {
+            "HotelReservationIDs": [
+              {
+                "HotelReservationID": {
+                  "@ResID_Value": "4405507930",
+                  "@ResID_Type": "14",
+                  "@ResID_Source": "BOOKING.COM",
+                  "@ResID_SourceContext": "12384509"
+                }
+              },
+              {
+                "HotelReservationID": {
+                  "@ResID_Value": "a83fe770",
+                  "@ResID_Type": "18",
+                  "@ResID_Source": "BOOKING.COM",
+                  "@ResID_SourceContext": ""
+                }
+              }
+            ],
+            "GuestCounts": [],
+            "Guarantee": null,
+            "Total": {
+              "currency_code": "EUR",
+              "amount_after_tax": "4760",
+              "tpa_extensions": [
+                {
+                  "payment_charge": {
+                    "amount": "6188",
+                    "currency_code": "EUR",
+                    "decimal_places": 4
+                  }
+                }
+              ],
+              "decimal_places": 2
+            },
+            "Profiles": [
+              {
+                "ProfileInfo": {
+                  "Profile": {
+                    "Customer": {
+                      "Email": "rsuero.754088@guest.booking.com",
+                      "Address": {
+                        "CountryName": {
+                          "@Code": "ES"
+                        },
+                        "PostalCode": "41013",
+                        "CompanyName": "",
+                        "AddressLine": "Avenida Las letanias 1, 2A",
+                        "CityName": "Sevilla"
+                      },
+                      "PersonName": {
+                        "GivenName": "Ramón",
+                        "Surname": "Suero"
+                      },
+                      "Telephone": {
+                        "@PhoneNumber": "+34 603 72 45 60"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "Comments": [
+              {
+                "Comment": {
+                  "Text": "** THIS RESERVATION HAS BEEN PRE-PAID **\nApproximate time of arrival: between 21:00 and 22:00\nBOOKING NOTE : Payment charge is EUR 0.6188",
+                  "@ParagraphNumber": 1
+                }
+              }
+            ],
+            "DepositPayments": {
+              "GuaranteePayment": {
+                "@GuaranteeType": "PrePay",
+                "AmountPercent": {
+                  "@DecimalPlaces": 2,
+                  "@Amount": 4760,
+                  "@Currency": "EUR"
+                },
+                "Description": "payment_on_Booking.com (Payout type: BankTransfer)"
+              }
+            },
+            "TotalCommissions": {
+              "CommissionPayableAmount": {
+                "amount": 714,
+                "currency_code": "EUR",
+                "decimal_places": 2
+              },
+              "Comment": "This is the total commission amount calculated by Booking.com"
+            }
+          },
+          "RoomStays": [
+            {
+              "RoomStay": {
+                "room_index": 900,
+                "RoomTypes": [
+                  {
+                    "RoomType": {
+                      "room_type_code": "1238450901",
+                      "RoomDescription": {
+                        "Text": "The apartment's kitchenette is available for cooking and storing food. The apartment offers air conditioning, a washing machine, heating, as well as a flat-screen TV. The unit offers 2 beds.",
+                        "MealPlan": "El precio de esta habitación no incluye servicio de comidas.",
+                        "@Name": "Apartamento de 1 dormitorio - General",
+                        "MaxChildren": 0
+                      },
+                      "AdditionalDetails": []
+                    }
+                  }
+                ],
+                "RatePlans": [
+                  {
+                    "RatePlan": {
+                      "Commission": {
+                        "CommissionPayableAmount": {
+                          "amount": 714,
+                          "currency_code": "EUR",
+                          "decimal_places": 2
+                        }
+                      }
+                    }
+                  }
+                ],
+                "RoomRates": {
+                  "Rates": [
+                    {
+                      "rate_plan_code": 46376063,
+                      "currency_code": "EUR",
+                      "amount_after_tax": "4760",
+                      "decimal_places": 2,
+                      "amount_before_tax": "",
+                      "effective_date": "2025-03-31"
+                    }
+                  ],
+                  "TPA_Extensions": {
+                    "RateRewrite": [
+                      {
+                        "from_name": "20% - Oferta estándar - 31 mar 2025",
+                        "promotion_id": "",
+                        "to_code": "46376063",
+                        "from_code": "0"
+                      }
+                    ],
+                    "BookingCondition": "El precio de esta habitación no incluye servicio de comidas. Condiciones referentes a niños y camas supletorias: Se permiten niños de cualquier edad. No has añadido ninguna cuna. No has añadido ninguna cama supletoria. El número máximo de personas es 4.  Condiciones sobre depósitos: El cliente tendrá que pagar por adelantado el precio total de la reserva en cualquier momento.  Condiciones de cancelación: El cliente puede cancelar la reserva de forma gratuita hasta 5 días antes de la fecha de llegada. El cliente tendrá que pagar el precio total de la reserva si cancela durante los 5 días antes de la fecha de llegada. Si el cliente no se presenta, tendrá que pagar el precio total de la reserva. "
+                  }
+                },
+                "GuestCounts": [
+                  {
+                    "GuestCount": {
+                      "@AgeQualifyingCode": 10,
+                      "@Age": null,
+                      "@Count": 2
+                    }
+                  }
+                ],
+                "Total": {
+                  "taxes": [
+                    {
+                      "code": "19",
+                      "type": "Inclusive",
+                      "amount": "433",
+                      "currency_code": "EUR",
+                      "decimal_places": 2,
+                      "charge_frequency": 12,
+                      "tax_description": "IVA (10%)"
+                    }
+                  ],
+                  "currency_code": "EUR",
+                  "amount_after_tax": "4760",
+                  "decimal_places": 2
+                },
+                "BasicPropertyInfo": {
+                  "@HotelCode": "12384509"
+                },
+                "ResGuestRPHs": [
+                  {
+                    "ResGuestRPH": {
+                      "@RPH": 1
+                    }
+                  }
+                ],
+                "SpecialRequests": [
+                  {
+                    "SpecialRequest": {
+                      "Text": "Non-Smoking",
+                      "@Name": "smoking preference"
+                    }
+                  }
+                ],
+                "Comments": [],
+                "TPA_Extensions": null,
+                "CancelPenalties": [
+                  {
+                    "from": "2025-03-31T18:06:29+00:00",
+                    "amount": "476",
+                    "currency_code": "EUR",
+                    "decimal_places": 1,
+                    "policy_code": "16"
+                  }
+                ],
+                "ServiceRPHs": [],
+                "PriceDetails": null
+              }
+            }
+          ],
+          "ResGuests": [
+            {
+              "ResGuest": {
+                "GivenName": "Ramón",
+                "Surname": "Suero",
+                "@ResGuestRPH": 1
+              }
+            }
+          ],
+          "TPA_Extention": null
+        }
+      },
+      {
+        "HotelReservation": {
+          "services": [],
+          "ResGlobalInfo": {
+            "HotelReservationIDs": [
+              {
+                "HotelReservationID": {
+                  "@ResID_Value": "4758983879",
+                  "@ResID_Type": "14",
+                  "@ResID_Source": "BOOKING.COM",
+                  "@ResID_SourceContext": "13522292"
+                }
+              },
+              {
+                "HotelReservationID": {
+                  "@ResID_Value": "f7f8276f",
+                  "@ResID_Type": "18",
+                  "@ResID_Source": "BOOKING.COM",
+                  "@ResID_SourceContext": ""
+                }
+              }
+            ],
+            "GuestCounts": [],
+            "Guarantee": null,
+            "Total": {
+              "currency_code": "EUR",
+              "amount_after_tax": "30010",
+              "tpa_extensions": [
+                {
+                  "payment_charge": {
+                    "amount": "58515",
+                    "currency_code": "EUR",
+                    "decimal_places": 4
+                  }
+                }
+              ],
+              "decimal_places": 2
+            },
+            "Profiles": [
+              {
+                "ProfileInfo": {
+                  "Profile": {
+                    "Customer": {
+                      "Email": "vshast.579408@guest.booking.com",
+                      "Address": {
+                        "CountryName": {
+                          "@Code": "IN"
+                        },
+                        "PostalCode": "",
+                        "CompanyName": "",
+                        "AddressLine": "",
+                        "CityName": ""
+                      },
+                      "PersonName": {
+                        "GivenName": "Vipul",
+                        "Surname": "shastri"
+                      },
+                      "Telephone": {
+                        "@PhoneNumber": "+91 88798 11876"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "Comments": [
+              {
+                "Comment": {
+                  "Text": "** THIS RESERVATION HAS BEEN PRE-PAID **\nReservation has a cancellation grace period. Do not charge if cancelled before 2025-03-31 21:06:27\nBOOKING NOTE : Payment charge is EUR 5.8515",
+                  "@ParagraphNumber": 1
+                }
+              }
+            ],
+            "DepositPayments": {
+              "GuaranteePayment": {
+                "@GuaranteeType": "PrePay",
+                "AmountPercent": {
+                  "@DecimalPlaces": 2,
+                  "@Amount": 39010,
+                  "@Currency": "EUR"
+                },
+                "Description": "payment_on_Booking.com (Payout type: BankTransfer)"
+              }
+            },
+            "TotalCommissions": {
+              "CommissionPayableAmount": {
+                "amount": 7022,
+                "currency_code": "EUR",
+                "decimal_places": 2
+              },
+              "Comment": "This is the total commission amount calculated by Booking.com"
+            }
+          },
+          "RoomStays": [
+            {
+              "RoomStay": {
+                "room_index": 835,
+                "RoomTypes": [
+                  {
+                    "RoomType": {
+                      "room_type_code": "1352229201",
+                      "RoomDescription": {
+                        "Text": "The hot tub is a top feature of this apartment. This spacious apartment includes 1 living room, 2 separate bedrooms and 2 bathrooms with a bath and free toiletries. The well-equipped kitchen has a stovetop, a refrigerator, a dishwasher and kitchenware. The air-conditioned apartment offers a flat-screen TV with satellite channels, a washing machine, a tea and coffee maker, a seating area as well as garden views. The unit has 3 beds.",
+                        "MealPlan": "La tariffa di questa camera non include alcun pasto.",
+                        "@Name": "Appartamento Deluxe con 2 Camere da Letto e Vista Giardino - Non rimborsabile",
+                        "MaxChildren": 0
+                      },
+                      "AdditionalDetails": []
+                    }
+                  }
+                ],
+                "RatePlans": [
+                  {
+                    "RatePlan": {
+                      "Commission": {
+                        "CommissionPayableAmount": {
+                          "amount": 7022,
+                          "currency_code": "EUR",
+                          "decimal_places": 2
+                        }
+                      }
+                    }
+                  }
+                ],
+                "RoomRates": {
+                  "Rates": [
+                    {
+                      "rate_plan_code": 51720444,
+                      "currency_code": "EUR",
+                      "amount_after_tax": "30010",
+                      "decimal_places": 2,
+                      "amount_before_tax": "",
+                      "effective_date": "2025-05-25"
+                    }
+                  ],
+                  "TPA_Extensions": {
+                    "RateRewrite": [
+                      {
+                        "from_name": "Getaway Deal",
+                        "promotion_id": "",
+                        "to_code": "51720444",
+                        "from_code": "0"
+                      }
+                    ],
+                    "BookingCondition": "La tariffa di questa camera non include alcun pasto. Condizioni per i bambini e per il letto supplementare : Sono ammessi bambini di tutte le età. 1 bambino (fino a 3 anni compiuti) può soggiornare al costo di € 29 a bambino per soggiorno usando le culle (se disponibili). 1 ospite (di ogni età) può soggiornare al costo di € 30 a bambino per soggiorno usando i letti extra (se disponibili). Il numero massimo di letti supplementari è 1. Il numero massimo di culle è 1. Il numero massimo di ospiti totali è 6.  Deposito/Pagamento Anticipato: Il cliente paga l'importo totale della prenotazione in qualsiasi momento dopo la prenotazione.  Termini di cancellazione: Il cliente paga l'importo totale della prenotazione se cancella in qualsiasi momento dopo la prenotazione. "
+                  }
+                },
+                "GuestCounts": [
+                  {
+                    "GuestCount": {
+                      "@AgeQualifyingCode": 10,
+                      "@Age": null,
+                      "@Count": 4
+                    }
+                  },
+                  {
+                    "GuestCount": {
+                      "@AgeQualifyingCode": 8,
+                      "@Age": 11,
+                      "@Count": 1
+                    }
+                  },
+                  {
+                    "GuestCount": {
+                      "@AgeQualifyingCode": 8,
+                      "@Age": 16,
+                      "@Count": 1
+                    }
+                  }
+                ],
+                "Total": {
+                  "taxes": [
+                    {
+                      "code": "14",
+                      "type": "Exclusive",
+                      "amount": "9000",
+                      "currency_code": "EUR",
+                      "decimal_places": 2,
+                      "charge_frequency": 12,
+                      "tax_description": "costo pulizia"
+                    },
+                    {
+                      "code": "19",
+                      "type": "Inclusive",
+                      "amount": "2728",
+                      "currency_code": "EUR",
+                      "decimal_places": 2,
+                      "charge_frequency": 12,
+                      "tax_description": "IVA (10%)"
+                    },
+                    {
+                      "code": "3",
+                      "type": "Exclusive",
+                      "amount": "2520",
+                      "currency_code": "EUR",
+                      "decimal_places": 2,
+                      "charge_frequency": 21,
+                      "tax_description": "Tassa di soggiorno"
+                    }
+                  ],
+                  "currency_code": "EUR",
+                  "amount_after_tax": "30010",
+                  "decimal_places": 2
+                },
+                "BasicPropertyInfo": {
+                  "@HotelCode": "13522292"
+                },
+                "ResGuestRPHs": [
+                  {
+                    "ResGuestRPH": {
+                      "@RPH": 1
+                    }
+                  }
+                ],
+                "SpecialRequests": [
+                  {
+                    "SpecialRequest": {
+                      "Text": "Non-Smoking",
+                      "@Name": "smoking preference"
+                    }
+                  }
+                ],
+                "Comments": [],
+                "TPA_Extensions": null,
+                "CancelPenalties": [
+                  {
+                    "from": "2025-03-31T18:06:27+00:00",
+                    "amount": "3001",
+                    "currency_code": "EUR",
+                    "decimal_places": 1,
+                    "policy_code": "1"
+                  },
+                  {
+                    "from": "",
+                    "amount": "100",
+                    "currency_code": "",
+                    "decimal_places": null,
+                    "policy_code": "grace_period"
+                  }
+                ],
+                "ServiceRPHs": [],
+                "PriceDetails": null
+              }
+            }
+          ],
+          "ResGuests": [
+            {
+              "ResGuest": {
+                "GivenName": "Vipul",
+                "Surname": "shastri",
+                "@ResGuestRPH": 1
+              }
+            }
+          ],
+          "TPA_Extention": {
+            "flags": [
+              {
+                "name": "booker_is_genius"
+              }
+            ],
+            "booker": null
+          }
+        }
+      }
+    ],
+    "ruid": "UmFuZG9tSVYkc2RlIyh9YZ7dEmwZFqqRrgXdKoXSmAcpaSUHARXI/SDjZwlWZyWNSFTQ3slpLKj+G7FD+UzZvcif3VgukoGgNWeDKdrI/JU="
+  },
+  "OTA_HotelResModifyNotifRQ": {
+    "ruid": "UmFuZG9tSVYkc2RlIyh9Ycl5kRZYgN3vUnB/VLX5809KHUFdB+ixwX9aHHGKi8QGuzftZTcUFzAqrvC7PvikVURQbkr0i8Z8CbtEnAny8CY=",
+    "HotelResModifies": []
+  }
+}
+
+Response:
+""

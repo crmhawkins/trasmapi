@@ -90,11 +90,6 @@ export default  function limpieza(){
                 document.getElementById("puntosLimpieza").textContent = 0;
             }
 
-            // console.log(top[0].puntuacion);
-
-            // document.getElementById("puntosLimpieza").textContent = top[0].puntuacion;
-
-            // console.log(top);
         })
         .catch(error => {
             console.error('Error:', error);
