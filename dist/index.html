@@ -54,6 +54,15 @@
 <body id="bodyArea"  onload="cargarHojaDeEstilos();">
     <!-- <button id="addToHomeBtn" class="area_entrada"><div class="imgArea"></div></button> -->
 
+    <!-- Login / Registro -->
+    <div id="loginBox" style="position: fixed; top: 20px; left: 20px; background: white; padding: 16px; border-radius: 8px; z-index: 99999; max-width: 280px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+        <h4 style="margin-top: 0;">Login rápido</h4>
+        <input id="loginEmail" type="email" placeholder="Email" style="width: 100%; margin-bottom: 6px;">
+        <input id="loginPass" type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 6px;">
+        <button onclick="login(document.getElementById('loginEmail').value, document.getElementById('loginPass').value)" style="width: 100%; margin-bottom: 6px;">Iniciar sesión</button>
+        <button onclick="loginWithGoogle()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 8px; border-radius: 4px;">Iniciar con Google</button>
+    </div>
+  
     <div id="introScreen" class="intro_screen">
         <div class="intro_loader"></div> <!-- Se verá primero -->
         <div class="intro_content oculto">
