@@ -1,3 +1,5 @@
+import { showInterstitialAd } from './ads.js';
+
 export default  function limpieza(){
     document.getElementById("startLimpieza").addEventListener("click", function() {
         setTimeout(function() {
@@ -7,6 +9,7 @@ export default  function limpieza(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
         document.getElementById('jugarGame3').style.display = 'block';
     });
     document.getElementById("startGameLimpieza").addEventListener("click", function() {
@@ -47,6 +50,7 @@ export default  function limpieza(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
 
     });
     document.getElementById("volverGame3").addEventListener("click", function() {
@@ -58,6 +62,7 @@ export default  function limpieza(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
     document.getElementById("volverLimpieza").addEventListener("click", function() {
@@ -70,6 +75,7 @@ export default  function limpieza(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
     
@@ -199,15 +205,15 @@ export default  function limpieza(){
     
             const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             
-            if (!isSafari) {
-                if (gameAreass.requestFullscreen) {
-                    gameAreass.requestFullscreen();
-                } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
-                    gameAreass.webkitRequestFullscreen();
-                } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
-                    gameAreass.msRequestFullscreen();
-                }
-            }
+            // if (!isSafari) {
+            //     if (gameAreass.requestFullscreen) {
+            //         gameAreass.requestFullscreen();
+            //     } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
+            //         gameAreass.webkitRequestFullscreen();
+            //     } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
+            //         gameAreass.msRequestFullscreen();
+            //     }
+            // }
             document.getElementById('pauseModalLimpieza').style.display = 'none';
 
             // Reanuda los intervalos de las tortugas en pantalla utilizando la información almacenada
@@ -257,44 +263,13 @@ export default  function limpieza(){
                     boat.style.top = boatPosition + 'px';
                 }, 25);  
             }
-            /*
-            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                boatMoving = setInterval(function() {
-                    // Mover hacia la izquierda solo si la parte izquierda del barco está dentro del área del mar
-                    if (e.key === "ArrowLeft" && boatPositionLeft > 0) {
-                        boatPositionLeft -= 5;
-                    }
-                    // Mover hacia la derecha solo si la parte derecha del barco está dentro del área del mar
-                    else if (e.key === "ArrowRight" && boatPositionLeft < sea.clientWidth - boat.clientWidth) {
-                        boatPositionLeft += 5;
-                    }
-                    boat.style.left = boatPositionLeft + 'px';
-                }, 25);  
-            }
-            */
+
         });
         document.addEventListener('keyup', function() {
             clearInterval(boatMoving);
             boatMoving = null;
         });
-        // document.getElementById("botonVolverLimpieza").addEventListener("click", function() {
-        //     setTimeout(function() {
-        //         // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
-        //         window.scrollTo(0, 1);
-        //     }, 0);
-        //     turtleIntervals.forEach(clearInterval);  
-        //     clearInterval(boatMoving);  
-        //     clearTimeout(turtleTimeoutID); // Añadir esta línea para detener el intervalo de spawnTurtle
 
-        //     // Eliminar todas las tortugas del área de juego.
-        //     const turtles = document.querySelectorAll('.basura');
-        //     turtles.forEach(turtle => {
-        //         if (sea.contains(turtle)) {
-        //             sea.removeChild(turtle);
-        //         }
-        //     });
-        //     resetGameFinal()
-        // });
         document.getElementById("reiniciarLimpieza").addEventListener("click", function() {
             setTimeout(function() {
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
@@ -352,6 +327,7 @@ export default  function limpieza(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
 
         });
 
@@ -400,19 +376,12 @@ export default  function limpieza(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
 
         });
         document.getElementById('botonUpLimpieza').addEventListener('click', function(event) {
             if (paused) return;
-        
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
-        
+            
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
         
@@ -428,14 +397,6 @@ export default  function limpieza(){
 
         document.getElementById('botonDownLimpieza').addEventListener('click', function(event) {
             if (paused) return;
-        
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
         
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
@@ -673,8 +634,10 @@ export default  function limpieza(){
 
                         document.getElementById('seaLimpieza').classList.add('paused-animationLimpieza');
         
-                        showScoreScreen(score);
-                    } else {
+                        showInterstitialAd().then(() => {
+                            showScoreScreen(score);
+                        });
+                        } else {
                         // let savedSound = document.getElementById("savedSound");
                         // savedSound.play();
                         crashSound.play();

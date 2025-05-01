@@ -24,9 +24,11 @@ export async function login(email, password) {
         body: JSON.stringify({ email, password })
     });
     const data = await res.json();
+    console.log(data);
     if (res.ok) {
         localStorage.setItem('token', data.token);
-        alert('Login correcto');
+        localStorage.setItem('ads_removed', data.ads_removed);
+        return true;
     } else {
         alert('Error en login: ' + JSON.stringify(data));
     }
@@ -38,10 +40,14 @@ export async function loginWithGoogle() {
     App.addListener('appUrlOpen', async (data) => {
         const url = new URL(data.url);
         const token = url.searchParams.get('token');
+        const ads_removed = url.searchParams.get('ads_removed');
         if (token) {
+            console.log('🚀 Token recibido:', token);
+            console.log('🚀 Anuncios eliminados:', ads_removed);
             localStorage.setItem('token', token);
+            localStorage.setItem('ads_removed', ads_removed);
             await Browser.close();
-            alert('Login con Google correcto');
+            return true;
         }
     });
 }

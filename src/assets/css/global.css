@@ -7,20 +7,47 @@ body {
            user-select: none;    /* Non-prefixed version, currently
                                      supported by Chrome and Opera */
   }
-.banner {
+  .banner {
     position: fixed;
     bottom: 0;
-    left: 0px;
+    left: 0;
     width: 100%;
-    z-index: 888888;
     height: 79px;
-    display: block;
-    margin: 0 auto;
+    display: flex;
+    align-items: flex-end; /* Esto empuja el contenido hacia abajo */
+    justify-content: center;
+    z-index: 9999;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
+
 .banner img {
     display: block;
     width: 100%;
+    height: auto; /* Mantiene proporción */
+    margin: 0;
+    padding: 0;
+}
+.remove-ads-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ffd700, #ffcc00);
+    color: #333;
+    font-weight: bold;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 10000;
+}
 
+.remove-ads-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 .botonTouch {
     background-color: rgba(175, 175, 175, 0.192);

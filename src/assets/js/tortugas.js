@@ -1,3 +1,5 @@
+import { showInterstitialAd } from './ads.js';
+
 export default  function tortugas(){
     document.getElementById("startButton").addEventListener("click", function() {
         setTimeout(function() {
@@ -7,6 +9,7 @@ export default  function tortugas(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
         document.getElementById('jugarGame1').style.display = 'block';
 
     });
@@ -63,6 +66,7 @@ export default  function tortugas(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
     document.getElementById("volverTortugas").addEventListener("click", function() {
@@ -75,6 +79,7 @@ export default  function tortugas(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
     function startGame() {
@@ -126,8 +131,6 @@ export default  function tortugas(){
         gameArea.style.display='block';
         let boatMoveAmount = 20; // La cantidad de píxeles que quieres que el barco se mueva con cada toque
 
-        // Comenzar la música
-        //music.play();
 
         //eventos
         document.addEventListener('keydown', function(e) {
@@ -136,13 +139,13 @@ export default  function tortugas(){
             }
         });
 
-        if (gameArea.requestFullscreen) {
-            gameArea.requestFullscreen();
-        } else if (gameArea.webkitRequestFullscreen) { /* Safari */
-            gameArea.webkitRequestFullscreen();
-        } else if (gameArea.msRequestFullscreen) { /* IE/Edge */
-            gameArea.msRequestFullscreen();
-        }
+        // if (gameArea.requestFullscreen) {
+        //     gameArea.requestFullscreen();
+        // } else if (gameArea.webkitRequestFullscreen) { /* Safari */
+        //     gameArea.webkitRequestFullscreen();
+        // } else if (gameArea.msRequestFullscreen) { /* IE/Edge */
+        //     gameArea.msRequestFullscreen();
+        // }
 
         document.addEventListener('keydown', function(e) {
             if (paused) return;
@@ -163,32 +166,13 @@ export default  function tortugas(){
                     boat.style.top = boatPosition + 'px';
                 }, 25);  
             }
-           /* if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                boatMoving = setInterval(function() {
-                    // Mover hacia la izquierda solo si la parte izquierda del barco está dentro del área del mar
-                    if (e.key === "ArrowLeft" && boatPositionLeft > 0) {
-                        boatPositionLeft -= 5;
-                    }
-                    // Mover hacia la derecha solo si la parte derecha del barco está dentro del área del mar
-                    else if (e.key === "ArrowRight" && boatPositionLeft < sea.clientWidth - boat.clientWidth) {
-                        boatPositionLeft += 5;
-                    }
-                    boat.style.left = boatPositionLeft + 'px';
-                }, 25);  
-            }*/
+
         });
         document.addEventListener('keyup', function() {
             clearInterval(boatMoving);
             boatMoving = null;
         });
 
-        // document.getElementById("botonVolverTortugas").addEventListener("click", function() {
-        //     setTimeout(function() {
-        //         // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
-        //         window.scrollTo(0, 1);
-        //     }, 0);
-        //     resetGame()
-        // });
 
         document.getElementById("reiniciarTortugas").addEventListener("click", function() {
             setTimeout(function() {
@@ -247,6 +231,7 @@ export default  function tortugas(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
 
         });
 
@@ -292,90 +277,13 @@ export default  function tortugas(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
+
 
         });
-
-        // gameArea.addEventListener('touchstart', function(event) {
-        //     if (paused) return;
-        
-        //     let touchY = event.touches[0].clientY;
-        
-        //     // Calcula la posición vertical del sea en relación con gameArea
-        //     let seaPosition = sea.getBoundingClientRect().top;
-        
-        //     // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-        //     touchY -= seaPosition;
-        
-        //     // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
-        //     boatPosition = boat.offsetTop;
-        
-        //     // Si tocas por encima del centro del barco, muévelo hacia arriba
-        //     if (touchY < boat.offsetTop + boat.clientHeight / 2) {
-        //         boatPosition -= boatMoveAmount;
-        //     }
-        //     // Si tocas por debajo del centro del barco, muévelo hacia abajo
-        //     else {
-        //         boatPosition += boatMoveAmount;
-        //     }
-        
-        //     // Restricciones para evitar que el barco salga del área de juego
-        //     if (boatPosition < 0) boatPosition = 0;
-        //     if (boatPosition > sea.clientHeight - boat.clientHeight) boatPosition = sea.clientHeight - boat.clientHeight;
-        
-        //     boat.style.top = boatPosition + 'px';
-        // });
-        
-        // sea.addEventListener('touchstart', function(event) {
-        //     if (paused) return;
-    
-        //   startTouchY = event.touches[0].clientY;
-        //     // startTouchX = event.touches[0].clientX;
-
-        // });
-
-    
-        // sea.addEventListener('touchmove', function(event) {
-        //     if (paused) return;
-
-        //     // Movimiento vertical
-        //     let currentTouchY = event.touches[0].clientY;
-        //     let diffY = startTouchY - currentTouchY;
-        //     boatPosition -= diffY;
-
-        //     // Restricción para que el barco no salga del mar verticalmente.
-        //     if (boatPosition < 0) boatPosition = 0;
-        //     if (boatPosition > sea.clientHeight - boat.clientHeight) boatPosition = sea.clientHeight - boat.clientHeight;
-        //     boat.style.top = boatPosition + 'px';
-
-        //   /*  // Movimiento horizontal
-        //     let currentTouchX = event.touches[0].clientX;
-        //     let diffX = startTouchX - currentTouchX;
-        //     boatHorizontalPosition -= diffX;
-
-        //     // Restricción para que el barco no salga del mar horizontalmente.
-        //     if (boatHorizontalPosition < 0) boatHorizontalPosition = 0;
-        //     if (boatHorizontalPosition > sea.clientWidth - boat.clientWidth) boatHorizontalPosition = sea.clientWidth - boat.clientWidth;
-        //     boat.style.left = boatHorizontalPosition + 'px'; */
-
-        //     // Actualizar la posición inicial del toque para que el movimiento sea continuo.
-        //     startTouchY = currentTouchY;
-        //     // startTouchX = currentTouchX;
-        // });
-    
-        // sea.addEventListener('touchend', function() {
-        //     startTouchY = null;
-        // });
     
         document.getElementById('botonUp').addEventListener('click', function(event) {
             if (paused) return;
-        
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
         
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
@@ -393,14 +301,6 @@ export default  function tortugas(){
         document.getElementById('botonDown').addEventListener('click', function(event) {
             if (paused) return;
         
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
-        
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
         
@@ -412,29 +312,14 @@ export default  function tortugas(){
             if (boatPosition > sea.clientHeight - boat.clientHeight) boatPosition = sea.clientHeight - boat.clientHeight;
         
             boat.style.top = boatPosition + 'px';
-        });
-        // setInterval(function() {
-        //     if (!gameRunning) return;
-    
-        //     clearInterval(turtleSpawner);
-        //     turtleSpawner = setInterval(createTurtle, turtleSpawnRate);
-        // }, 10000); 
-    
+        }); 
     
         // Verifica la orientación al cargar la página
         window.addEventListener('load', checkOrientation, false);
     
         // Verifica la orientación cuando el tamaño de la ventana cambia (por ejemplo, cuando el dispositivo rota)
         window.addEventListener('resize', checkOrientation, false);
-        // document.body.addEventListener('touchmove', function(event) {
-        //     event.preventDefault();
-        // }, { passive: false });
-    
-        // Actualizar marcador
-        // function updateScore(points) {
-        //     score += points;
-        //     scoreElement.textContent = score;
-        // }
+        
         function updateScore(points = 0, reset = false) {
             if (reset) {
                 score = 0;
@@ -627,7 +512,6 @@ export default  function tortugas(){
                     turtle.offsetTop < boat.offsetTop + boat.offsetHeight - overlapMarginVertical) {
                     
                     if (sea.contains(turtle)) {
-                        //showScoreScreen(score);
                         sea.removeChild(turtle);
                     }
                     gameRunning = false;
@@ -643,8 +527,9 @@ export default  function tortugas(){
                     clearInterval(turtleSpawner);  
                     document.getElementById('sea').classList.add('paused-animation');
     
-                    showScoreScreen(score);
-                            // alert('¡El barco ha chocado con una tortuga!');
+                    showInterstitialAd().then(() => {
+                        showScoreScreen(score);
+                    });                            // alert('¡El barco ha chocado con una tortuga!');
                     //resetGame();
                 }
     
