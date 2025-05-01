@@ -9,5 +9,15 @@
   },
   "server": {
     "cleartext": true
+  },
+  "hooks": {
+    "postsync": "node scripts/fixAndroidJavaVersion.js"
+  },
+  "plugins": {
+    "CustomURLScheme": {
+      "scheme": "trasmapiapp",
+      "iosScheme": "trasmapiapp",
+      "androidScheme": "trasmapiapp"
+    }
   }
 }

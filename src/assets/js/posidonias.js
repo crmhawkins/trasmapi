@@ -1,3 +1,5 @@
+import { showInterstitialAd } from './ads.js';
+
 export default  function posidonias(){
     document.getElementById("startPosidonias").addEventListener("click", function() {
         setTimeout(function() {
@@ -7,6 +9,7 @@ export default  function posidonias(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
         document.getElementById('jugarGame2').style.display = 'block';
     });
 
@@ -62,6 +65,7 @@ export default  function posidonias(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
 
@@ -74,6 +78,7 @@ export default  function posidonias(){
         document.getElementById('game1').style.display = 'block';
         document.getElementById('game2').style.display = 'block';
         document.getElementById('game3').style.display = 'block';
+        document.getElementById('userLoginArea').style.display = 'block';
 
     });
     
@@ -151,13 +156,13 @@ export default  function posidonias(){
             }
         });
     
-        if (gameArea.requestFullscreen) {
-            gameArea.requestFullscreen();
-        } else if (gameArea.webkitRequestFullscreen) { /* Safari */
-            gameArea.webkitRequestFullscreen();
-        } else if (gameArea.msRequestFullscreen) { /* IE/Edge */
-            gameArea.msRequestFullscreen();
-        }
+        // if (gameArea.requestFullscreen) {
+        //     gameArea.requestFullscreen();
+        // } else if (gameArea.webkitRequestFullscreen) { /* Safari */
+        //     gameArea.webkitRequestFullscreen();
+        // } else if (gameArea.msRequestFullscreen) { /* IE/Edge */
+        //     gameArea.msRequestFullscreen();
+        // }
         
         document.addEventListener('keydown', function(e) {
             if (paused) return;
@@ -258,6 +263,7 @@ export default  function posidonias(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
 
         });
         document.getElementById("salirPantallaPosidonias").addEventListener("click", function() {
@@ -301,6 +307,7 @@ export default  function posidonias(){
             document.getElementById('game1').style.display = 'block';
             document.getElementById('game2').style.display = 'block';
             document.getElementById('game3').style.display = 'block';
+            document.getElementById('userLoginArea').style.display = 'block';
 
         });
         document.getElementById('botonUpPosidonia').addEventListener('click', function(event) {
@@ -590,8 +597,9 @@ export default  function posidonias(){
                         clearInterval(turtleSpawner);  
                         document.getElementById('seaPosidonia').classList.add('paused-animationPosidonias');
         
-                        showScoreScreen(score);
-                                // alert('¡El barco ha chocado con una tortuga!');
+                        showInterstitialAd().then(() => {
+                            showScoreScreen(score);
+                        });                                // alert('¡El barco ha chocado con una tortuga!');
                         //resetGame();
                     }
                 }

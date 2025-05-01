@@ -103,15 +103,13 @@ export default  function posidonias(){
         const scoreElement = document.getElementById('pointsPosidonias');
         const sea = document.getElementById('seaPosidonia');
         let boatPosition = (gameArea.clientHeight / 2) - (boat.clientHeight / 2);
-        //boat.style.top = 50 + '%';
-        // boat.style.top = '100px';
+
         if (boatPosition == 0) {
             boat.style.top = 200 + 'px'; // Asegúrate de que el barco está en la posición inicial
             
         }else{
             boat.style.top = boatPosition + 'px';
         }
-
         
         let boatMoving = null;
         let turtleSpeed = 120; // velocidad inicial de las tortugas más rápida
@@ -126,17 +124,13 @@ export default  function posidonias(){
         let turtleSpawner = setInterval(createTurtle, turtleSpawnRate);
         let startTouchY = 0;
         let gameRunning = true;
-        // let boatPositionLeft = 0; // O cualquier valor inicial.
-        // let startTouchX = null;
-        // let boatHorizontalPosition = boat.offsetLeft; // Asumiendo que 'boat' es el elemento que estás moviendo.
+
         gameArea.style.display='block'
         // Verificar la orientación cuando se carga la página
         window.onload = checkOrientation;
 
         // Verificar la orientación cuando se cambia el tamaño de la ventana
         window.onresize = checkOrientation;
-        // Comenzar la música
-        //music.play();
     
         //eventos
         document.addEventListener('keydown', function(e) {
@@ -172,32 +166,13 @@ export default  function posidonias(){
                     boat.style.top = boatPosition + 'px';
                 }, 25);  
             }
-            /*
-            if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-                boatMoving = setInterval(function() {
-                    // Mover hacia la izquierda solo si la parte izquierda del barco está dentro del área del mar
-                    if (e.key === "ArrowLeft" && boatPositionLeft > 0) {
-                        boatPositionLeft -= 5;
-                    }
-                    // Mover hacia la derecha solo si la parte derecha del barco está dentro del área del mar
-                    else if (e.key === "ArrowRight" && boatPositionLeft < sea.clientWidth - boat.clientWidth) {
-                        boatPositionLeft += 5;
-                    }
-                    boat.style.left = boatPositionLeft + 'px';
-                }, 25);  
-            }*/
+
         });
         document.addEventListener('keyup', function() {
             clearInterval(boatMoving);
             boatMoving = null;
         });
-        // document.getElementById("botonVolverPosidonias").addEventListener("click", function() {
-        //     setTimeout(function() {
-        //         // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
-        //         window.scrollTo(0, 1);
-        //     }, 0);
-        //     resetGame()
-        // }); 
+
         document.getElementById("reiniciarPosidonias").addEventListener("click", function() {
             setTimeout(function() {
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
@@ -223,7 +198,6 @@ export default  function posidonias(){
 
             clearInterval(turtleSpawner);
 
-            
             // Asumiendo que ya tienes una referencia al elemento sea:
             const sea = document.getElementById('seaPosidonia');
     
@@ -265,7 +239,6 @@ export default  function posidonias(){
 
             clearInterval(turtleSpawner);
 
-            
             // Asumiendo que ya tienes una referencia al elemento sea:
             const sea = document.getElementById('seaPosidonia');
     
@@ -299,15 +272,7 @@ export default  function posidonias(){
         });
         document.getElementById('botonUpPosidonia').addEventListener('click', function(event) {
             if (paused) return;
-        
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
-        
+                
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
         
@@ -323,14 +288,6 @@ export default  function posidonias(){
 
         document.getElementById('botonDownPosidonia').addEventListener('click', function(event) {
             if (paused) return;
-        
-            // let touchY = event.touches[0].clientY;
-        
-            // Calcula la posición vertical del sea en relación con gameArea
-            // let seaPosition = sea.getBoundingClientRect().top;
-        
-            // Ajusta la coordenada Y táctil restando la posición del sea en gameArea
-            // touchY -= seaPosition;
         
             // Actualiza boatPosition para reflejar la posición actual del barco antes de moverlo
             boatPosition = boat.offsetTop;
@@ -485,11 +442,7 @@ export default  function posidonias(){
         
                 // Pausa el spawner de tortugas
                 timers.push(turtleSpawner);
-                
-                // Aquí puedes agregar cualquier otro intervalo o timeout que estés utilizando
-                // timers.push(otroIntervalo);
-                // timers.push(otroTimeout);
-        
+                       
                 // Limpiamos todos los intervalos y timeouts
                 timers.forEach(timer => clearInterval(timer));
                 
@@ -499,10 +452,6 @@ export default  function posidonias(){
                 
                 // Reanudamos el spawner de tortugas
                 turtleSpawner = setInterval(createTurtle, turtleSpawnRate);
-                
-                // Si tenías otros intervalos o timeouts, también deberías reanudarlos aquí.
-                // otroIntervalo = setInterval(funcionDeEseIntervalo, tiempo);
-                // otroTimeout = setTimeout(funcionDeEseTimeout, tiempo);
                 
                 document.getElementById('pauseModal').style.display = 'none';
             }
@@ -552,11 +501,9 @@ export default  function posidonias(){
                 }
     
                 
-
                 let music = document.getElementById("backgroundMusic");
     
                 let crashSound = document.getElementById("crashSound");
-                //let gameRunning = true;
                
 
                 if (turtle.offsetLeft < boat.offsetLeft + boat.offsetWidth - overlapMargin &&
@@ -628,7 +575,6 @@ export default  function posidonias(){
                 rotateDeviceElement.style.display = 'flex';
             } else { // Modo paisaje
                 rotateDeviceElement.style.display = 'none';
-
 
             }
         }

@@ -52,16 +52,137 @@
     </script>
 <script defer src="/app.js"></script></head>
 <body id="bodyArea"  onload="cargarHojaDeEstilos();">
-    <!-- <button id="addToHomeBtn" class="area_entrada"><div class="imgArea"></div></button> -->
-
-    <!-- Login / Registro -->
-    <div id="loginBox" style="position: fixed; top: 20px; left: 20px; background: white; padding: 16px; border-radius: 8px; z-index: 99999; max-width: 280px; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-        <h4 style="margin-top: 0;">Login rápido</h4>
-        <input id="loginEmail" type="email" placeholder="Email" style="width: 100%; margin-bottom: 6px;">
-        <input id="loginPass" type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 6px;">
-        <button onclick="login(document.getElementById('loginEmail').value, document.getElementById('loginPass').value)" style="width: 100%; margin-bottom: 6px;">Iniciar sesión</button>
-        <button onclick="loginWithGoogle()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 8px; border-radius: 4px;">Iniciar con Google</button>
+    <div id="userLoginArea" >
+        <!-- Botón flotante -->
+        <button id="openLoginBtn" style="
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background: #ffffffcc;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            z-index: 10000;
+            box-shadow: 0 0 6px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        ">
+            <i class="fa-solid fa-user"></i>
+        </button>
+        <button id="logoutBtn" style="display: none; position: fixed; top: 15px; left: 15px; background: #ffffffcc; border: none; border-radius: 50%; width: 40px; height: 40px; z-index: 10000; box-shadow: 0 0 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+        <button id="removeAdsBtn" class="remove-ads-btn">
+            Quitar Anuncios
+        </button>
+        
+        <!-- Overlay + LoginBox -->
+        <div id="loginOverlay" style="
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        ">
+            <div id="loginBox" style="
+                background: white;
+                padding: 24px;
+                border-radius: 12px;
+                max-width: 320px;
+                width: 1hv;
+                box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+                font-family: sans-serif;
+                position: relative;
+            ">
+                <h4 id="formTitle" style="margin-top: 0; text-align: center;">Iniciar sesión</h4>
+    
+                <!-- Login -->
+                <div id="loginForm">
+                    <input id="loginEmail" type="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="loginPass" type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <button onclick="login(document.getElementById('loginEmail').value, document.getElementById('loginPass').value)" style="width: 100%; margin-bottom: 8px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px;">Iniciar sesión</button>
+                    <button onclick="loginWithGoogle()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 10px; border-radius: 4px;">Iniciar con Google</button>
+                </div>
+    
+                <!-- Registro -->
+                <div id="registerForm" style="display: none;">
+                    <input id="registerName" type="text" placeholder="Nombre" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="registerEmail" type="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="registerPass" type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input id="registerPassConfirm" type="password" placeholder="Confirmar contraseña" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <button onclick="register(
+                        document.getElementById('registerName').value,
+                        document.getElementById('registerEmail').value,
+                        document.getElementById('registerPass').value,
+                        document.getElementById('registerPassConfirm').value
+                    )" style="width: 100%; margin-bottom: 8px; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px;">Registrarse</button>
+                </div>
+    
+                <!-- Toggle -->
+                <p style="text-align: center; font-size: 14px; margin-top: 10px;">
+                    <span id="toggleText">¿No tienes cuenta?</span>
+                    <a href="#" id="toggleLoginRegister" style="color: #007bff; text-decoration: none;">Regístrate</a>
+                </p>
+            </div>
+        </div>
     </div>
+
+    <!-- Modal (ya en tu HTML, asegúrate que tenga estas IDs y estilos actualizados) -->
+    <div id="customAdModal" style="
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: #000;
+        z-index: 9999999;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    ">
+        <button id="closeAdBtn" style="
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            font-size: 22px;
+            border: none;
+            border-radius: 50%;
+            padding: 8px 12px;
+            z-index: 100000;
+        ">✕</button>
+
+        <h3 id="adTitle" style="margin-bottom: 10px;">Anuncio</h3>
+        <div id="adMedia" style="width: 100%; height: 900vh;"></div> <!-- Aquí carga img o video -->
+        <p id="adText" style="margin-bottom: 15px;">Texto del anuncio aquí</p>
+        
+        <button id="adMoreBtn" style="
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            padding: 14px 28px;
+            font-size: 18px;
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            cursor: pointer;
+            z-index: 100000;
+        ">Ver más</button>
+    </div>
+
+
+
   
     <div id="introScreen" class="intro_screen">
         <div class="intro_loader"></div> <!-- Se verá primero -->
