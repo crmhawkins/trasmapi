@@ -49,15 +49,15 @@ if (!window.__APP_INITIALIZED__) {
             const gameAreass = document.getElementById('bodyArea');
             const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-            if (!isSafari) {
-                if (gameAreass.requestFullscreen) {
-                    gameAreass.requestFullscreen();
-                } else if (gameAreass.webkitRequestFullscreen) {
-                    gameAreass.webkitRequestFullscreen();
-                } else if (gameAreass.msRequestFullscreen) {
-                    gameAreass.msRequestFullscreen();
-                }
-            }
+            // if (!isSafari) {
+            //     if (gameAreass.requestFullscreen) {
+            //         gameAreass.requestFullscreen();
+            //     } else if (gameAreass.webkitRequestFullscreen) {
+            //         gameAreass.webkitRequestFullscreen();
+            //     } else if (gameAreass.msRequestFullscreen) {
+            //         gameAreass.msRequestFullscreen();
+            //     }
+            // }
 
             document.getElementById("introScreen").style.display = 'none';
             document.getElementById("startScreen").style.display = 'flex';

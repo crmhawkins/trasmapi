@@ -1,4 +1,5 @@
 import { showInterstitialAd } from './ads.js';
+import { App } from '@capacitor/app';
 
 export default  function limpieza(){
     document.getElementById("startLimpieza").addEventListener("click", function() {
@@ -198,6 +199,8 @@ export default  function limpieza(){
               turtlesInScreen.forEach((turtle) => {
                 turtle.style.animationPlayState = 'paused';
               });
+              let music = document.getElementById("backgroundMusic");    
+                music.pause();
         });
         
         document.getElementById("resumeButtonLimpieza").addEventListener("click", function(){
@@ -216,6 +219,10 @@ export default  function limpieza(){
             // }
             document.getElementById('pauseModalLimpieza').style.display = 'none';
 
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             // Reanuda los intervalos de las tortugas en pantalla utilizando la información almacenada
             turtlesData.forEach((turtleData, index) => {
                 const interval = setInterval(function() {
@@ -275,6 +282,10 @@ export default  function limpieza(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             resetGameFinal()
         });
         document.getElementById("reiniciarLimpiezaPrimero").addEventListener("click", function() {
@@ -282,6 +293,10 @@ export default  function limpieza(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             resetGameFinal()
         });
         document.getElementById("botonSalirLimpieza").addEventListener("click", function() {
@@ -622,7 +637,8 @@ export default  function limpieza(){
             
                         paused = true;
                         music.volume = 0.3;
-        
+                        music.pause();
+
                         turtleIntervals.forEach(clearInterval);  
                         cloudIntervals.forEach(clearInterval);
                         clearInterval(boatMoving);  
@@ -829,5 +845,33 @@ export default  function limpieza(){
         moveCloud(document.getElementById('cloudLimpieza1'), 50);  
         moveCloud(document.getElementById('cloudLimpieza2'), 60); 
         moveCloud(document.getElementById('cloudLimpieza3'), 70);
+
+        App.addListener('appStateChange', ({ isActive }) => {
+            if(document.getElementById("startScreen").style.display == "none"){
+                if (!isActive) {
+                    console.log('App en segundo plano, pausando juego...');
+                    
+                    // Pausar música
+                    music.pause();
+            
+                    // Pausar el juego
+                    paused = true;
+            
+                    // Mostrar el modal de pausa si lo deseas
+                    document.getElementById('pauseModalLimpieza').style.display = 'block';
+            
+                    // Detener tortugas
+                    turtleIntervals.forEach(clearInterval);
+                } else {
+                    console.log('App activa de nuevo');
+            
+                    // Solo si no está en pausa manual por el usuario
+                    if (!paused) {
+                        music.play().catch(err => console.warn('Error al reanudar música', err));
+                        // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                    }
+                }
+            }
+        });
     }
 }

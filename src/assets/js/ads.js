@@ -38,7 +38,7 @@ export async function showInterstitialAd() {
             video.style.height = '100vh';
             video.style.objectFit = 'cover';
             video.autoplay = true;
-            video.muted = true;
+            video.muted = false;
             video.playsInline = true;
             video.controls = false;
             mediaContainer.appendChild(video);

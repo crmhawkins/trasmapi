@@ -1,4 +1,6 @@
 import { showInterstitialAd } from './ads.js';
+import { App } from '@capacitor/app';
+
 
 export default  function tortugas(){
     document.getElementById("startButton").addEventListener("click", function() {
@@ -115,7 +117,7 @@ export default  function tortugas(){
         }
         let boatMoving = null;
         let turtleSpeed = 120; // velocidad inicial de las tortugas más rápida
-        let turtleSpawnRate = 4000; // velocidad inicial de aparición de las tortugas
+        let turtleSpawnRate = 3000; // velocidad inicial de aparición de las tortugas
         let score = 0;
         let paused = false;
         let turtleIntervals = [];
@@ -179,6 +181,10 @@ export default  function tortugas(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             resetGameFinal()
         });
 
@@ -187,6 +193,10 @@ export default  function tortugas(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             resetGameFinal()
         });
 
@@ -219,7 +229,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -264,7 +274,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -352,7 +362,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             music.volume = 0.6;
 
             score = 0;
@@ -392,7 +402,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             music.volume = 0.6;
             // score = 0;
             // updateScore(score);
@@ -417,17 +427,21 @@ export default  function tortugas(){
             
             const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     
-            if (!isSafari) {
-                if (gameAreass.requestFullscreen) {
-                    gameAreass.requestFullscreen();
-                } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
-                    gameAreass.webkitRequestFullscreen();
-                } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
-                    gameAreass.msRequestFullscreen();
-                }
-            }
+            // if (!isSafari) {
+            //     if (gameAreass.requestFullscreen) {
+            //         gameAreass.requestFullscreen();
+            //     } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
+            //         gameAreass.webkitRequestFullscreen();
+            //     } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
+            //         gameAreass.msRequestFullscreen();
+            //     }
+            // }
             console.log('Seguir Juego Posidonias')
 
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
             document.getElementById('pauseModalTortuga').style.display = 'none';
             turtlesData.forEach(turtleData => {
                 const interval = setInterval(function() {
@@ -453,6 +467,8 @@ export default  function tortugas(){
                 clearInterval(interval);
             });
             paused = !paused;  // Cambiar el estado de pausa
+            let music = document.getElementById("backgroundMusic");    
+                music.pause();
         });
 
         let turtlesData = []; // Para almacenar información sobre las tortugas en movimiento
@@ -520,7 +536,7 @@ export default  function tortugas(){
     
                     paused = true;
                     music.volume = 0.3;  // Reducir el volumen al 50%
-    
+                    music.pause();
                     turtleIntervals.forEach(clearInterval);  
                     cloudIntervals.forEach(clearInterval);  // Limpiar todos los intervalos de las nubes
                     clearInterval(boatMoving);  
@@ -681,5 +697,35 @@ export default  function tortugas(){
         moveCloud(document.getElementById('cloud2'), 60); 
         moveCloud(document.getElementById('cloud3'), 70);
 
+        App.addListener('appStateChange', ({ isActive }) => {
+            if(document.getElementById("startScreen").style.display == "none"){
+
+                if (!isActive) {
+                    console.log('App en segundo plano, pausando juego...');
+                    
+                    // Pausar música
+                    music.pause();
+            
+                    // Pausar el juego
+                    paused = true;
+            
+                    // Mostrar el modal de pausa si lo deseas
+                    document.getElementById('pauseModalTortuga').style.display = 'block';
+            
+                    // Detener tortugas
+                    turtleIntervals.forEach(clearInterval);
+                }  else {
+                    console.log('App activa de nuevo');
+            
+                    // Solo si no está en pausa manual por el usuario
+                    if (!paused) {
+                        music.play().catch(err => console.warn('Error al reanudar música', err));
+                        // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                    }
+                }
+            }
+
+        });
     }
+
 }

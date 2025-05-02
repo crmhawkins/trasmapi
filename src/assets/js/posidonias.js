@@ -1,4 +1,5 @@
 import { showInterstitialAd } from './ads.js';
+import { App } from '@capacitor/app';
 
 export default  function posidonias(){
     document.getElementById("startPosidonias").addEventListener("click", function() {
@@ -214,6 +215,9 @@ export default  function posidonias(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+            music.play();
             resetGameFinal()
         });
         document.getElementById("reiniciarPosidoniasPrimero").addEventListener("click", function() {
@@ -221,6 +225,9 @@ export default  function posidonias(){
                 // Esto hará que la barra de direcciones se oculte en dispositivos móviles.
                 window.scrollTo(0, 1);
             }, 0);
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+            music.play();
             resetGameFinal()
         });
         document.getElementById("botonSalirPosidonias").addEventListener("click", function() {
@@ -450,31 +457,36 @@ export default  function posidonias(){
             
             const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     
-            if (!isSafari) {
-                if (gameAreass.requestFullscreen) {
-                    gameAreass.requestFullscreen();
-                } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
-                    gameAreass.webkitRequestFullscreen();
-                } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
-                    gameAreass.msRequestFullscreen();
-                }
-            }
+            // if (!isSafari) {
+            //     if (gameAreass.requestFullscreen) {
+            //         gameAreass.requestFullscreen();
+            //     } else if (gameAreass.webkitRequestFullscreen) { /* Safari */
+            //         gameAreass.webkitRequestFullscreen();
+            //     } else if (gameAreass.msRequestFullscreen) { /* IE/Edge */
+            //         gameAreass.msRequestFullscreen();
+            //     }
+            // }
             console.log('Seguir Juego Posidonias')
 
-                document.getElementById('pauseModalPosidonia').style.display = 'none';
+            let music = document.getElementById("backgroundMusic");
+            music.volume = 0.6;
+        
+            music.play();
+            document.getElementById('pauseModalPosidonia').style.display = 'none';
 
-                turtlesData.forEach(turtleData => {
-                    const interval = setInterval(function() {
-                        turtleData.position -= 12;
-                        turtleData.element.style.left = turtleData.position + 'px';
+            turtlesData.forEach(turtleData => {
+                const interval = setInterval(function() {
+                    turtleData.position -= 12;
+                    turtleData.element.style.left = turtleData.position + 'px';
+        
+                    // Aquí, coloca el código que ya tienes que maneja la colisión, la puntuación y la eliminación de tortugas fuera de la pantalla...
+        
+                }, turtleData.speed);
+        
+                turtleIntervals.push(interval);
+            });
             
-                        // Aquí, coloca el código que ya tienes que maneja la colisión, la puntuación y la eliminación de tortugas fuera de la pantalla...
-            
-                    }, turtleData.speed);
-            
-                    turtleIntervals.push(interval);
-                });
-                paused = !paused;  // Cambiar el estado de pausa
+            paused = !paused;  // Cambiar el estado de pausa
 
         });
         document.getElementById("botonPausarPosidonias").addEventListener("click", function(){
@@ -487,6 +499,8 @@ export default  function posidonias(){
                     clearInterval(interval);
                 });
                 paused = !paused;  // Cambiar el estado de pausa
+                let music = document.getElementById("backgroundMusic");    
+                music.pause();
         });
         function togglePause() {
             paused = !paused;
@@ -590,7 +604,8 @@ export default  function posidonias(){
         
                         paused = true;
                         music.volume = 0.3;  // Reducir el volumen al 50%
-        
+                        music.pause();
+
                         turtleIntervals.forEach(clearInterval);  
                         cloudIntervals.forEach(clearInterval);  // Limpiar todos los intervalos de las nubes
                         clearInterval(boatMoving);  
@@ -734,5 +749,33 @@ export default  function posidonias(){
         moveCloud(document.getElementById('cloudPosidonia1'), 50);  
         moveCloud(document.getElementById('cloudPosidonia2'), 60); 
         moveCloud(document.getElementById('cloudPosidonia3'), 70);
+
+         App.addListener('appStateChange', ({ isActive }) => {
+            if(document.getElementById("startScreen").style.display == "none"){
+                if (!isActive) {
+                    console.log('App en segundo plano, pausando juego...');
+                    
+                    // Pausar música
+                    music.pause();
+            
+                    // Pausar el juego
+                    paused = true;
+            
+                    // Mostrar el modal de pausa si lo deseas
+                    document.getElementById('pauseModalPosidonia').style.display = 'block';
+            
+                    // Detener tortugas
+                    turtleIntervals.forEach(clearInterval);
+                } else {
+                    console.log('App activa de nuevo');
+            
+                    // Solo si no está en pausa manual por el usuario
+                    if (!paused) {
+                        music.play().catch(err => console.warn('Error al reanudar música', err));
+                        // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                    }
+                }
+            }
+        });
     }
 }
