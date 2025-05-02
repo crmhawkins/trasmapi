@@ -109,7 +109,7 @@ export default  function tortugas(){
         }
         let boatMoving = null;
         let turtleSpeed = 120; // velocidad inicial de las tortugas más rápida
-        let turtleSpawnRate = 4000; // velocidad inicial de aparición de las tortugas
+        let turtleSpawnRate = 3000; // velocidad inicial de aparición de las tortugas
         let score = 0;
         let paused = false;
         let turtleIntervals = [];
@@ -234,7 +234,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -278,7 +278,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -457,7 +457,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             music.volume = 0.6;
 
             score = 0;
@@ -497,7 +497,7 @@ export default  function tortugas(){
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
             turtleSpeed = 120;
-            turtleSpawnRate = 4000;
+            turtleSpawnRate = 3000;
             music.volume = 0.6;
             score = 0;
             updateScore(score);
