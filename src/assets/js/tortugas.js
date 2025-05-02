@@ -116,8 +116,9 @@ export default  function tortugas(){
             boat.style.top = boatPosition + 'px';
         }
         let boatMoving = null;
-        let turtleSpeed = 120; // velocidad inicial de las tortugas más rápida
-        let turtleSpawnRate = 3000; // velocidad inicial de aparición de las tortugas
+        let turtleSpeed = 150;
+ // velocidad inicial de las tortugas más rápida
+        let turtleSpawnRate = 2000; // velocidad inicial de aparición de las tortugas
         let score = 0;
         let paused = false;
         let turtleIntervals = [];
@@ -228,8 +229,9 @@ export default  function tortugas(){
                         // Resetea la posición del barco y otras variables del juego.
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
-            turtleSpeed = 120;
-            turtleSpawnRate = 3000;
+            turtleSpeed = 150;
+
+            turtleSpawnRate = 2000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -273,8 +275,9 @@ export default  function tortugas(){
                         // Resetea la posición del barco y otras variables del juego.
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
-            turtleSpeed = 120;
-            turtleSpawnRate = 3000;
+            turtleSpeed = 150;
+
+            turtleSpawnRate = 2000;
             // music.volume = 0.6;
             // gameRunning = false;
             // paused = true;
@@ -361,8 +364,9 @@ export default  function tortugas(){
                         // Resetea la posición del barco y otras variables del juego.
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
-            turtleSpeed = 120;
-            turtleSpawnRate = 3000;
+            turtleSpeed = 150;
+
+            turtleSpawnRate = 2000;
             music.volume = 0.6;
 
             score = 0;
@@ -401,8 +405,9 @@ export default  function tortugas(){
             paused = false;
             boatPosition = gameArea.clientHeight / 2 - boat.clientHeight / 2;
             boat.style.top = boatPosition + 'px';
-            turtleSpeed = 120;
-            turtleSpawnRate = 3000;
+            turtleSpeed = 150;
+
+            turtleSpawnRate = 2000;
             music.volume = 0.6;
             // score = 0;
             // updateScore(score);
@@ -699,28 +704,30 @@ export default  function tortugas(){
 
         App.addListener('appStateChange', ({ isActive }) => {
             if(document.getElementById("startScreen").style.display == "none"){
+                if( document.getElementById('jugarGame1').style.display == 'block'){
 
-                if (!isActive) {
-                    console.log('App en segundo plano, pausando juego...');
-                    
-                    // Pausar música
-                    music.pause();
-            
-                    // Pausar el juego
-                    paused = true;
-            
-                    // Mostrar el modal de pausa si lo deseas
-                    document.getElementById('pauseModalTortuga').style.display = 'block';
-            
-                    // Detener tortugas
-                    turtleIntervals.forEach(clearInterval);
-                }  else {
-                    console.log('App activa de nuevo');
-            
-                    // Solo si no está en pausa manual por el usuario
-                    if (!paused) {
-                        music.play().catch(err => console.warn('Error al reanudar música', err));
-                        // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                    if (!isActive) {
+                        console.log('App en segundo plano, pausando juego...');
+                        
+                        // Pausar música
+                        music.pause();
+                
+                        // Pausar el juego
+                        paused = true;
+                
+                        // Mostrar el modal de pausa si lo deseas
+                        document.getElementById('pauseModalTortuga').style.display = 'block';
+                
+                        // Detener tortugas
+                        turtleIntervals.forEach(clearInterval);
+                    }  else {
+                        console.log('App activa de nuevo');
+                
+                        // Solo si no está en pausa manual por el usuario
+                        if (!paused) {
+                            music.play().catch(err => console.warn('Error al reanudar música', err));
+                            // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                        }
                     }
                 }
             }

@@ -752,27 +752,29 @@ export default  function posidonias(){
 
          App.addListener('appStateChange', ({ isActive }) => {
             if(document.getElementById("startScreen").style.display == "none"){
-                if (!isActive) {
-                    console.log('App en segundo plano, pausando juego...');
-                    
-                    // Pausar música
-                    music.pause();
-            
-                    // Pausar el juego
-                    paused = true;
-            
-                    // Mostrar el modal de pausa si lo deseas
-                    document.getElementById('pauseModalPosidonia').style.display = 'block';
-            
-                    // Detener tortugas
-                    turtleIntervals.forEach(clearInterval);
-                } else {
-                    console.log('App activa de nuevo');
-            
-                    // Solo si no está en pausa manual por el usuario
-                    if (!paused) {
-                        music.play().catch(err => console.warn('Error al reanudar música', err));
-                        // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                if( document.getElementById('jugarGame2').style.display == 'block'){
+                    if (!isActive) {
+                        console.log('App en segundo plano, pausando juego...');
+                        
+                        // Pausar música
+                        music.pause();
+                
+                        // Pausar el juego
+                        paused = true;
+                
+                        // Mostrar el modal de pausa si lo deseas
+                        document.getElementById('pauseModalPosidonia').style.display = 'block';
+                
+                        // Detener tortugas
+                        turtleIntervals.forEach(clearInterval);
+                    } else {
+                        console.log('App activa de nuevo');
+                
+                        // Solo si no está en pausa manual por el usuario
+                        if (!paused) {
+                            music.play().catch(err => console.warn('Error al reanudar música', err));
+                            // Aquí podrías reanudar las tortugas si lo deseas automáticamente
+                        }
                     }
                 }
             }
