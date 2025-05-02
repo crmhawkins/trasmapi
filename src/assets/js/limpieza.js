@@ -848,7 +848,7 @@ export default  function limpieza(){
 
         App.addListener('appStateChange', ({ isActive }) => {
             if(document.getElementById("startScreen").style.display == "none"){
-                if( document.getElementById('jugarGame3').style.display == 'block'){
+                if( document.getElementById('gameAreaLimpieza').style.display == 'block'){
                     if (!isActive) {
                         console.log('App en segundo plano, pausando juego...');
                         

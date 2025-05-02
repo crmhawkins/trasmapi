@@ -704,7 +704,8 @@ export default  function tortugas(){
 
         App.addListener('appStateChange', ({ isActive }) => {
             if(document.getElementById("startScreen").style.display == "none"){
-                if( document.getElementById('jugarGame1').style.display == 'block'){
+                console.log(document.getElementById('gameArea').style.display);
+                if( document.getElementById('gameArea').style.display == 'block'){
 
                     if (!isActive) {
                         console.log('App en segundo plano, pausando juego...');

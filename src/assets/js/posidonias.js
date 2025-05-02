@@ -752,7 +752,7 @@ export default  function posidonias(){
 
          App.addListener('appStateChange', ({ isActive }) => {
             if(document.getElementById("startScreen").style.display == "none"){
-                if( document.getElementById('jugarGame2').style.display == 'block'){
+                if( document.getElementById('gameAreaPosidonias').style.display == 'block'){
                     if (!isActive) {
                         console.log('App en segundo plano, pausando juego...');
                         
