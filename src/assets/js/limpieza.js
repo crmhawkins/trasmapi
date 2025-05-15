@@ -768,7 +768,15 @@ export default  function limpieza(){
         }
 
         document.getElementById("saveScoreLimpieza").addEventListener("click", function() {
-            const playerName = document.getElementById('playerNameLimpieza').value;
+            const playerName = document.getElementById('playerNameLimpieza').value.trim();
+            const errorSpan = document.getElementById('nameErrorLimpieza');
+
+            if (playerName === "") {
+                errorSpan.style.display = 'inline';
+                return;
+            } else {
+                errorSpan.style.display = 'none';
+            }
             // const score = 100;  // Cambia esto por la puntuación deseada
 
             fetch('https://trasmapiback.hawkins.es/api/save/limpieza', {
