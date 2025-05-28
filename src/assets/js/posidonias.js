@@ -54,6 +54,7 @@ export default  function posidonias(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
 
     });
     document.getElementById("volverPosidonias").addEventListener("click", function() {
@@ -671,7 +672,15 @@ export default  function posidonias(){
         }
 
         document.getElementById("saveScorePosidonias").addEventListener("click", function() {
-            const playerName = document.getElementById('playerNamePosidonias').value;
+            const playerName = document.getElementById('playerNamePosidonias').value.trim();
+            const errorSpan = document.getElementById('nameErrorPosidonias');
+
+            if (playerName === "") {
+                errorSpan.style.display = 'inline';
+                return;
+            } else {
+                errorSpan.style.display = 'none';
+            }
             // const score = 100;  // Cambia esto por la puntuación deseada
 
             fetch('https://trasmapiback.hawkins.es/api/save/posidonias', {

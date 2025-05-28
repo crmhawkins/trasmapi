@@ -57,6 +57,7 @@ export default  function tortugas(){
         document.getElementById('game1').style.display = 'none';
         document.getElementById('game2').style.display = 'none';
         document.getElementById('game3').style.display = 'none';
+        document.getElementById('userLoginArea').style.display = 'none';
 
     });
     document.getElementById("volverGame1").addEventListener("click", function() {
@@ -604,9 +605,18 @@ export default  function tortugas(){
             // Puedes cargar las puntuaciones aquí también:
             displayTopScores();
         }
-        document.getElementById("saveScore").addEventListener("click", function() {
-            const playerName = document.getElementById('playerNameTortuga').value;
-            // const score = 100;  // Cambia esto por la puntuación deseada
+       document.getElementById("saveScore").addEventListener("click", function () {
+            const playerName = document.getElementById('playerNameTortuga').value.trim();
+            const errorSpan = document.getElementById('nameErrorTortuga');
+
+            if (playerName === "") {
+                errorSpan.style.display = 'inline';
+                return;
+            } else {
+                errorSpan.style.display = 'none';
+            }
+
+            const score = parseInt(document.getElementById("finalScore").innerText); 
 
             fetch('https://trasmapiback.hawkins.es/api/save/tortugas', {
                 method: 'POST',
@@ -617,28 +627,22 @@ export default  function tortugas(){
             })
             .then(response => response.text())
             .then(data => {
-                console.log(data);  // Debería imprimir "Datos guardados."
-                
+                console.log(data);
+
                 fetch('https://trasmapiback.hawkins.es/api/data/tortugas')
                     .then(response => response.json())
                     .then(data => {
-                        // Ordenar el array por puntuación de forma descendente
                         const sortedData = data.sort((a, b) => b.puntuacion - a.puntuacion);
-                        
-                        // Tomar las primeras 10 puntuaciones
                         const top10 = sortedData.slice(0, 10);
                         document.getElementById("scoreDatos").style.display = 'none';
                         document.getElementById("scoreLista").style.display = 'block';
                         displayScores(top10);
                     })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                    .catch(error => console.error('Error:', error));
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            .catch(error => console.error('Error:', error));
         });
+
 
         function saveScore() {
             let playerName = document.getElementById("playerNameTortuga").value;

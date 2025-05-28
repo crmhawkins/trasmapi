@@ -23,6 +23,12 @@ export async function showInterstitialAd() {
         text.textContent = anuncio.texto || '';
         modal.style.display = 'flex';
 
+        // Ocultar botón de cerrar inicialmente
+        closeBtn.style.pointerEvents = 'none';
+        closeBtn.style.opacity = '0.5';
+        closeBtn.disabled = true;
+        closeBtn.style.cursor = 'not-allowed';
+
         // Insertar media
         if (anuncio.tipo === 'imagen') {
             const img = document.createElement('img');
@@ -31,6 +37,15 @@ export async function showInterstitialAd() {
             img.style.height = '100vh';
             img.style.objectFit = 'cover';
             mediaContainer.appendChild(img);
+
+            // Mostrar botón tras 5 segundos (imagen)
+            setTimeout(() => {
+                closeBtn.style.pointerEvents = 'auto';
+                closeBtn.style.opacity = '1';
+                closeBtn.disabled = false;
+                closeBtn.style.cursor = 'pointer';
+            }, 5000);
+
         } else if (anuncio.tipo === 'video') {
             const video = document.createElement('video');
             video.src = anuncio.media;
@@ -42,24 +57,20 @@ export async function showInterstitialAd() {
             video.playsInline = true;
             video.controls = false;
             mediaContainer.appendChild(video);
+
+            // Esperar a que el video termine
+            video.addEventListener('ended', () => {
+                closeBtn.style.pointerEvents = 'auto';
+                closeBtn.style.opacity = '1';
+                closeBtn.disabled = false;
+                closeBtn.style.cursor = 'pointer';
+            });
         }
 
-        // Estética botón ver más
+        // Acción botón "Ver más"
         verMasBtn.onclick = () => window.open(anuncio.link, '_blank');
 
-        // Ocultar el botón cerrar por 5 segundos
-        closeBtn.style.pointerEvents = 'none';
-        closeBtn.style.opacity = '0.5';
-        closeBtn.disabled = true;
-        closeBtn.style.cursor = 'not-allowed';
-
-        setTimeout(() => {
-            closeBtn.style.pointerEvents = 'auto';
-            closeBtn.style.opacity = '1';
-            closeBtn.disabled = false;
-            closeBtn.style.cursor = 'pointer';
-        }, 5000);
-
+        // Acción botón cerrar
         closeBtn.onclick = () => {
             modal.style.display = 'none';
             mediaContainer.innerHTML = ''; // limpieza
