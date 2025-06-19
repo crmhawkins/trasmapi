@@ -34,20 +34,31 @@ export async function login(email, password) {
     }
 }
 
-export async function loginWithGoogle() {
-    await Browser.open({ url: `${API_BASE}/auth/google/redirect` });
+export function loginWithGoogle() {
+  return new Promise(async (resolve, reject) => {
+    try {
+      await Browser.open({ url: `${API_BASE}/auth/google/redirect` });
 
-    App.addListener('appUrlOpen', async (data) => {
+      const listener = App.addListener('appUrlOpen', async (data) => {
         const url = new URL(data.url);
         const token = url.searchParams.get('token');
         const ads_removed = url.searchParams.get('ads_removed');
+
+        await Browser.close();
+        listener.remove();
+
         if (token) {
-            console.log('🚀 Token recibido:', token);
-            console.log('🚀 Anuncios eliminados:', ads_removed);
-            localStorage.setItem('token', token);
-            localStorage.setItem('ads_removed', ads_removed);
-            await Browser.close();
-            return true;
+          console.log('🚀 Token recibido:', token);
+          console.log('🚀 Anuncios eliminados:', ads_removed);
+          localStorage.setItem('token', token);
+          localStorage.setItem('ads_removed', ads_removed);
+          resolve(true);
+        } else {
+          resolve(false);
         }
-    });
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
 }

@@ -4,7 +4,8 @@ import limpieza from './assets/js/limpieza.js';
 import './assets/css/app.css';
 import { register, login, loginWithGoogle } from './assets/js/auth.js';
 import { showInterstitialAd } from './assets/js/ads.js';
-import { initializePurchases, quitarAnuncios } from './assets/js/compra.js';
+import {initializePurchases ,quitarAnuncios } from './assets/js/compra.js';
+import { init } from 'es-module-lexer';
 
 
 if (!window.__APP_INITIALIZED__) {
@@ -12,8 +13,11 @@ if (!window.__APP_INITIALIZED__) {
 
     console.log('✅ Ejecutando app.js por primera vez');
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', async function () {
         window.scrollTo({ top: 1, behavior: 'smooth' });
+
+        window.toggleLoginLogoutButtons = toggleLoginLogoutButtons;
+        window.isLoggedIn = isloggedIn;
 
         console.log('Iniciando el Juego... by Hawkins')
         const loader = document.querySelector(".intro_loader");
@@ -36,9 +40,9 @@ if (!window.__APP_INITIALIZED__) {
         }, { passive: false });
         
         toggleLoginLogoutButtons(isloggedIn());
-        initializePurchases();
         tortugas();
         posidonias();
+        await initializePurchases();
         limpieza();
 
         document.getElementById("addToHomeBtn").addEventListener("click", function () {
@@ -181,14 +185,19 @@ if (!window.__APP_INITIALIZED__) {
 
         
         document.getElementById('removeAdsBtn').addEventListener('click', async function () {
-            const success = await quitarAnuncios();
+           const wasLoggedIn = isloggedIn(); 
+
+            const success = await quitarAnuncios();a
             if (success) {
                 showAlert('Anuncios desactivados correctamente', 'success');
-                this.style.display = 'none'; // Opcionalmente ocultas el botón
-            }
-        });
+                this.style.display = 'none';
 
-        
+                if (!wasLoggedIn && isloggedIn()) {
+                    toggleLoginLogoutButtons(true); // <-- Ahora sí actualizas el botón
+                }
+            }
+
+        });
 
     });
 }

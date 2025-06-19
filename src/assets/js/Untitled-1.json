@@ -1,0 +1,56 @@
+{
+    "className": "VerifiedReceipt",
+    "id": "GPA.3304-3814-3818-46523",
+    "sourceReceipt": {
+        "className": "Receipt",
+        "transactions": [
+            {
+                "className": "Transaction",
+                "transactionId": "GPA.3304-3814-3818-46523",
+                "state": "finished",
+                "products": [
+                    {
+                        "id": "remove_ads"
+                    }
+                ],
+                "platform": "android-playstore",
+                "nativePurchase": {
+                    "orderId": "GPA.3304-3814-3818-46523",
+                    "packageName": "com.hawkins.trasmapi",
+                    "productId": "remove_ads",
+                    "purchaseTime": 1750259239537,
+                    "purchaseState": 0,
+                    "purchaseToken": "nmhpgcigkdnlipodjdffikah.AO-J1OzKGDkvXMFsD5YmnMRgWuC0L7PVGSNNXcnpPD56umztfk1REaQ-_v8bynAC-xJQ6Y7zPvpiDsvaucKv0fMpIKgYDeOmsA",
+                    "quantity": 1,
+                    "acknowledged": false,
+                    "productIds": [
+                        "remove_ads"
+                    ],
+                    "getPurchaseState": 1,
+                    "developerPayload": "",
+                    "autoRenewing": false,
+                    "accountId": "",
+                    "profileId": "",
+                    "signature": "KtmDlMWt/yBq0H76lWaw9BulmtjHbIjc+it4rfQfWFHs96eridEB3+tyPitbvit7tM86cbGijW22T/laIMVKbn2gjk+FuTE1c8PQiqIiXrKkzAcVn5W24WmRcODA0uALdzZJNJKD81FDFoRqPXr3AtmipS6WpPuIFkG5ULHZvRzYFV+6oztyqIws0y+b+K6sLm/mI6lj7iKUXF8aaou7iyeMeTyG4VbhVOyVn+fgeIimIeyCRCZlzuaVfIJWKoFjV26c1NEIpet7PSfqkdBmtp6LMoLxE+pJbea8OIvX6+CG7jxFpvqPw5XB2TVh9u2+rjUkIe+bbgnwrm/93Bgmiw==",
+                    "receipt": "{\"orderId\":\"GPA.3304-3814-3818-46523\",\"packageName\":\"com.hawkins.trasmapi\",\"productId\":\"remove_ads\",\"purchaseTime\":1750259239537,\"purchaseState\":0,\"purchaseToken\":\"nmhpgcigkdnlipodjdffikah.AO-J1OzKGDkvXMFsD5YmnMRgWuC0L7PVGSNNXcnpPD56umztfk1REaQ-_v8bynAC-xJQ6Y7zPvpiDsvaucKv0fMpIKgYDeOmsA\",\"quantity\":1,\"acknowledged\":false}"
+                },
+                "purchaseId": "nmhpgcigkdnlipodjdffikah.AO-J1OzKGDkvXMFsD5YmnMRgWuC0L7PVGSNNXcnpPD56umztfk1REaQ-_v8bynAC-xJQ6Y7zPvpiDsvaucKv0fMpIKgYDeOmsA",
+                "purchaseDate": "2025-06-18T15:07:19.537Z",
+                "isPending": false,
+                "isAcknowledged": false,
+                "renewalIntent": "Lapse"
+            }
+        ],
+        "platform": "android-playstore",
+        "purchaseToken": "nmhpgcigkdnlipodjdffikah.AO-J1OzKGDkvXMFsD5YmnMRgWuC0L7PVGSNNXcnpPD56umztfk1REaQ-_v8bynAC-xJQ6Y7zPvpiDsvaucKv0fMpIKgYDeOmsA",
+        "orderId": "GPA.3304-3814-3818-46523"
+    },
+    "collection": [],
+    "latestReceipt": true,
+    "nativeTransactions": [
+        {
+            "type": "test"
+        }
+    ],
+    "validationDate": "2025-06-18T15:07:34.570Z"
+}
