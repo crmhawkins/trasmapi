@@ -1,0 +1,46 @@
+PODS:
+  - Capacitor (7.4.0):
+    - CapacitorCordova
+  - CapacitorApp (7.0.1):
+    - Capacitor
+  - CapacitorBrowser (7.0.1):
+    - Capacitor
+  - CapacitorCommunityAppleSignIn (7.0.1):
+    - Capacitor
+  - CapacitorCordova (7.4.0)
+  - CordovaPlugins (7.4.0):
+    - CapacitorCordova
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorBrowser (from `../../node_modules/@capacitor/browser`)"
+  - "CapacitorCommunityAppleSignIn (from `../../node_modules/@capacitor-community/apple-sign-in`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorBrowser:
+    :path: "../../node_modules/@capacitor/browser"
+  CapacitorCommunityAppleSignIn:
+    :path: "../../node_modules/@capacitor-community/apple-sign-in"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CordovaPlugins:
+    :path: "../capacitor-cordova-ios-plugins"
+
+SPEC CHECKSUMS:
+  Capacitor: a162db7c9c90f383740a78e8935dff4958158b6b
+  CapacitorApp: d63334c052278caf5d81585d80b21905c6f93f39
+  CapacitorBrowser: 081852cf532acf77b9d2953f3a88fe5b9711fb06
+  CapacitorCommunityAppleSignIn: b95415441e6c4223783a543f3a736ea4eabf8524
+  CapacitorCordova: 723e017d8a80ab2ede9959fbe37556c35ac860d5
+  CordovaPlugins: 7f17dd63523015aa06462f6e166915ec9d3dbe48
+
+PODFILE CHECKSUM: 39f71521dd54667893655ea423e443cf4785cc76
+
+COCOAPODS: 1.16.2

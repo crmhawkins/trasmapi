@@ -2,11 +2,14 @@ import tortugas from './assets/js/tortugas.js';
 import posidonias from './assets/js/posidonias.js';
 import limpieza from './assets/js/limpieza.js';
 import './assets/css/app.css';
-import { register, login, loginWithGoogle } from './assets/js/auth.js';
+import 'cordova-plugin-purchase';
+
+import { register, login, loginWithGoogle, loginWithApple, eliminarCuenta } from './assets/js/auth.js';
 import { showInterstitialAd } from './assets/js/ads.js';
 import {initializePurchases ,quitarAnuncios } from './assets/js/compra.js';
 import { init } from 'es-module-lexer';
 
+const store = CdvPurchase.store;
 
 if (!window.__APP_INITIALIZED__) {
     window.__APP_INITIALIZED__ = true;
@@ -95,6 +98,59 @@ if (!window.__APP_INITIALIZED__) {
             }
         };
 
+        window.loginWithApple = async function () {
+            try {
+                const result = await loginWithApple();
+
+                if (result) {
+                    showAlert('Inicio de sesión con Apple exitoso', 'success');
+                    closeLoginOverlay();
+                    toggleLoginLogoutButtons(true);
+                } else {
+                    showAlert('No se pudo iniciar sesión con Apple.', 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                showAlert('Error con Apple Login: ' + error, 'error');
+            }
+        };
+        
+        window.eliminarCuenta = async function () {
+            const confirmacion = confirm('¿Estás seguro de que quieres eliminar tu cuenta? Esta acción es irreversible.');
+
+            if (!confirmacion) return;
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                showAlert('No has iniciado sesión.', 'error');
+                return;
+            }
+
+            try {
+                const res = await fetch('https://trasmapiback.hawkins.es/api/user/delete', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Accept': 'application/json',
+                    }
+                });
+
+                if (res.ok) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('ads_removed');
+                    toggleLoginLogoutButtons(false);
+                    showAlert('Cuenta eliminada correctamente', 'success');
+                    location.href = '/';
+                } else {
+                    const data = await res.json();
+                    showAlert('Error al eliminar cuenta: ' + JSON.stringify(data), 'error');
+                }
+            } catch (error) {
+                console.error(error);
+                showAlert('Error al eliminar cuenta: ' + error, 'error');
+            }
+        };
+
         window.loginWithGoogle = async function () {
             try {
                 await loginWithGoogle();
@@ -158,16 +214,19 @@ if (!window.__APP_INITIALIZED__) {
             document.getElementById('loginOverlay').style.display = 'none';
         }
         
-        function toggleLoginLogoutButtons(isLoggedIn) {
+        function toggleLoginLogoutButtons(loggedIn) {
             const loginBtn = document.getElementById('openLoginBtn');
             const logoutBtn = document.getElementById('logoutBtn');
-        
-            if (isLoggedIn) {
-                loginBtn.style.display = 'none';
-                logoutBtn.style.display = 'flex';
+            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+
+            if (loggedIn) {
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'flex';
+                if (deleteAccountBtn) deleteAccountBtn.style.display = 'block';
             } else {
-                loginBtn.style.display = 'flex';
-                logoutBtn.style.display = 'none';
+                if (loginBtn) loginBtn.style.display = 'flex';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (deleteAccountBtn) deleteAccountBtn.style.display = 'none';
             }
         }
     
@@ -179,11 +238,38 @@ if (!window.__APP_INITIALIZED__) {
             showAlert('Sesión cerrada', 'info');
         });
 
+        document.getElementById('restoreBtn')?.addEventListener('click', async () => {
+            try {
+                await store.refresh();
+                showAlert('Compras restauradas correctamente.', 'success');
+            } catch (err) {
+                console.error('❌ Error al restaurar compras:', err);
+                showAlert('No se pudieron restaurar las compras.', 'error');
+            }
+        });
+
         function isloggedIn() {
             return !!localStorage.getItem('token');
         }
 
-        
+        window.showLoginModal = function () {
+            const overlay = document.getElementById('loginOverlay');
+            const box = document.getElementById('loginBox');
+            const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+
+            if (overlay && box) {
+                overlay.style.display = 'flex';
+                box.style.display = 'block';
+            } else {
+                console.warn('❌ No se encontró el modal de login en el DOM');
+            }
+
+            // Forzar ocultar el botón de eliminar cuenta
+            if (deleteAccountBtn) {
+                deleteAccountBtn.style.display = 'none';
+            }
+        }
+
         document.getElementById('removeAdsBtn').addEventListener('click', async function () {
            const wasLoggedIn = isloggedIn(); 
 

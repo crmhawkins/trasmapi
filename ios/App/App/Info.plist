@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>transmapi</string>
+	<string>BE BLUE</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -30,15 +30,15 @@
 	<array>
 		<string>armv7</string>
 	</array>
-    <key>CFBundleURLTypes</key>
-           <array>
-           <dict>
-           <key>CFBundleURLSchemes</key>
-           <array>
-           <string>$(URL_SCHEME)</string>
-           </array>
-           </dict>
-           </array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(URL_SCHEME)</string>
+			</array>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

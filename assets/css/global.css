@@ -30,9 +30,9 @@ body {
     padding: 0;
 }
 .remove-ads-btn {
-    position: fixed;
+    /* position: fixed;
     bottom: 15px;
-    left: 90px;
+    left: 90px; */
     background: linear-gradient(135deg, #ffd700, #ffcc00);
     color: #333;
     font-weight: bold;

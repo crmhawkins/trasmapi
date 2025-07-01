@@ -37,34 +37,49 @@ export async function initializePurchases() {
           // Acción personalizada si existe
           PRODUCT_ACTIONS[product.id]?.();
 
-          // Iniciar sesión si no hay token
-          let token = localStorage.getItem('token');
-          if (!token) {
-            console.log('🔐 Producto comprado pero sin sesión. Iniciando sesión...');
-            const success = await loginWithGoogle();
-            if (!success) {
-              console.warn('⚠️ No se pudo iniciar sesión automáticamente.');
-              return;
-            }
-            token = localStorage.getItem('token');
-             // ✅ Mostrar botón de logout
-            if (typeof window.toggleLoginLogoutButtons === 'function') {
-              window.toggleLoginLogoutButtons(true);
-            }
+          // // Iniciar sesión si no hay token
+          // let token = localStorage.getItem('token');
+          // if (!token) {
+          //   console.log('🔐 Producto comprado pero sin sesión. Iniciando sesión...');
+          //   const success = await loginWithGoogle();
+          //   if (!success) {
+          //     console.warn('⚠️ No se pudo iniciar sesión automáticamente.');
+          //     return;
+          //   }
+          //   token = localStorage.getItem('token');
+          //    // ✅ Mostrar botón de logout
+          //   if (typeof window.toggleLoginLogoutButtons === 'function') {
+          //     window.toggleLoginLogoutButtons(true);
+          //   }
+          // }
+
+          // // Notificar al backend (dummy ID si ya estaba comprado)
+          // fetch('https://trasmapiback.hawkins.es/api/ads/purchase', {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //     Authorization: 'Bearer ' + token,
+          //   },
+          //   body: JSON.stringify({
+          //     purchaseId: 'already_owned',
+          //     productId: product.id
+          //   }),
+          // });
+          const token = localStorage.getItem('token');
+          if (token) {
+            fetch('https://trasmapiback.hawkins.es/api/ads/purchase', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+              },
+              body: JSON.stringify({
+                purchaseId: 'already_owned',
+                productId: product.id
+              }),
+            });
           }
 
-          // Notificar al backend (dummy ID si ya estaba comprado)
-          fetch('https://trasmapiback.hawkins.es/api/ads/purchase', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + token,
-            },
-            body: JSON.stringify({
-              purchaseId: 'already_owned',
-              productId: product.id
-            }),
-          });
         }
       })
 
@@ -106,20 +121,25 @@ export async function initializePurchases() {
   }
 }
 
-export async function quitarAnuncios() {
+export async function quitarAnuncios2() {
   const product = store.get('remove_ads');
 
   if (!localStorage.getItem('token')) {
     console.log('🔐 Usuario no autenticado, iniciando sesión...');
-    const success = await loginWithGoogle();
-    if (!success) {
-      console.error('❌ Inicio de sesión cancelado o fallido');
-      return false;
-    }
 
-    if (typeof window.toggleLoginLogoutButtons === 'function') {
-      window.toggleLoginLogoutButtons(true);
+if (typeof window.showLoginModal === 'function') {
+      window.showLoginModal();
     }
+    return false;
+    //const success = await loginWithGoogle();
+    //if (!success) {
+      //console.error('❌ Inicio de sesión cancelado o fallido');
+     // return false;
+    //}
+
+    /*if (typeof window.toggleLoginLogoutButtons === 'function') {
+      window.toggleLoginLogoutButtons(true);
+    }*/
   }
 
   if (!product) {
@@ -153,6 +173,43 @@ export async function quitarAnuncios() {
   if (btn) btn.style.display = 'none';
 
     return true;
+}
+
+
+export async function quitarAnuncios() {
+  const product = store.get('remove_ads');
+
+  if (!product) {
+    console.error('❌ Producto no encontrado');
+    return false;
+  }
+
+  if (product.owned) {
+    PRODUCT_ACTIONS[product.id]?.();
+    const btn = document.getElementById('removeAdsBtn');
+    if (btn) btn.style.display = 'none';
+    showAlert('Ya tienes comprados los anuncios.', 'info');
+    return true;
+  }
+
+  const offer = product.getOffer();
+  if (!offer) {
+    console.error('❌ Oferta no disponible aún');
+    return false;
+  }
+
+  const error = await offer.order();
+  if (error) {
+    console.error('❌ Error al comprar:', error);
+    showAlert('Error al comprar: ' + error.message, 'error');
+    return false;
+  }
+
+  // Compra iniciada exitosamente
+  const btn = document.getElementById('removeAdsBtn');
+  if (btn) btn.style.display = 'none';
+
+  return true;
 }
 
 export function restaurarCompras() {

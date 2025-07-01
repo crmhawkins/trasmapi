@@ -50,13 +50,66 @@
             document.head.appendChild(link);
         }
     </script>
+    <style>
+
+    .remove-btn {
+        /* position: fixed;
+        bottom: 15px;
+        left: 240px; */
+        background: linear-gradient(135deg, #00aaff, #0099ff);
+        color: white;
+        font-weight: bold;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 10000;
+    }
+
+    .remove-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+    .eliminar-btn {
+        /* position: fixed;
+        bottom: 15px;
+        left: 240px; */
+        background: linear-gradient(135deg, #ff0000, #ff0000);
+        color: white;
+        font-weight: bold;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        z-index: 10000;
+    }
+
+    .eliminar-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+    #userLoginArea {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0 15px 20px;
+    gap: 8px;
+}
+    </style>
 </head>
 <body id="bodyArea"  onload="cargarHojaDeEstilos();">
     <div id="userLoginArea" >
         <!-- Botón flotante -->
         <button id="openLoginBtn" style="
-            position: fixed;
-            bottom: 15px; left: 20px;
+            /* position: fixed; */
+            /* bottom: 15px; left: 20px; */
             background: #ffffffcc;
             border: none;
             border-radius: 50%;
@@ -70,13 +123,23 @@
         ">
             <i class="fa-solid fa-user"></i>
         </button>
-        <button id="logoutBtn" style="display: none; position: fixed; bottom: 15px; left: 20px; background: #ffffffcc; border: none; border-radius: 50%; width: 40px; height: 40px; z-index: 10000; box-shadow: 0 0 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
+        <button id="logoutBtn" style="
+        display: none;
+        /* position: fixed;
+        bottom: 15px; 
+        left: 20px;  */
+        background: #ffffffcc; border: none; border-radius: 50%; width: 40px; height: 40px; z-index: 10000; box-shadow: 0 0 6px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
             <i class="fa-solid fa-right-from-bracket"></i>
         </button>
         <button id="removeAdsBtn" class="remove-ads-btn">
             Quitar Anuncios
         </button>
-        
+        <button id="deleteAccountBtn" style="display:none;" onclick="eliminarCuenta()" class="eliminar-btn">
+            Eliminar cuenta
+        </button>
+        <button id="restoreBtn" class="remove-btn">Restaurar compras</button>
+
+
         <!-- Overlay + LoginBox -->
         <div id="loginOverlay" style="
             display: none;
@@ -105,7 +168,8 @@
                     <input id="loginEmail" type="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     <input id="loginPass" type="password" placeholder="Contraseña" style="width: 100%; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
                     <button onclick="login(document.getElementById('loginEmail').value, document.getElementById('loginPass').value)" style="width: 100%; margin-bottom: 8px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px;">Iniciar sesión</button>
-                    <button onclick="loginWithGoogle()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 10px; border-radius: 4px;">Iniciar con Google</button>
+                    <button onclick="loginWithGoogle()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 10px; border-radius: 4px; margin-bottom: 8px;">Iniciar con Google</button>
+                    <button onclick="loginWithApple()" style="width: 100%; background: #4285F4; color: white; border: none; padding: 10px; border-radius: 4px; margin-bottom: 8px;">Iniciar sesión con Apple</button>
                 </div>
     
                 <!-- Registro -->
